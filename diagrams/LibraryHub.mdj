@@ -4796,7 +4796,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTby+zAfKtqOE="
 									},
-									"name": "idTheme"
+									"name": "idTheme",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -4804,7 +4805,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTby+zAfKtqOE="
 									},
-									"name": "name"
+									"name": "name",
+									"type": ""
 								}
 							]
 						},
@@ -4866,7 +4868,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTb1apO5QUwdE="
 									},
-									"name": "idBookThemes"
+									"name": "idBookThemes",
+									"type": ""
 								}
 							]
 						},
@@ -4884,7 +4887,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxf6a/F9kfM="
 									},
-									"name": "idBook"
+									"name": "idBook",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -4892,7 +4896,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxf6a/F9kfM="
 									},
-									"name": "title"
+									"name": "title",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -4900,7 +4905,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxf6a/F9kfM="
 									},
-									"name": "author"
+									"name": "author",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -4908,7 +4914,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxf6a/F9kfM="
 									},
-									"name": "isbn"
+									"name": "isbn",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -4916,7 +4923,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxf6a/F9kfM="
 									},
-									"name": "publicationYear"
+									"name": "publicationYear",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -4924,7 +4932,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxf6a/F9kfM="
 									},
-									"name": "isAvailable"
+									"name": "isAvailable",
+									"type": ""
 								}
 							]
 						}
@@ -5087,7 +5096,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxLTpfD8/1E="
 									},
-									"name": "idUser"
+									"name": "idUser",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5095,7 +5105,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxLTpfD8/1E="
 									},
-									"name": "firstName"
+									"name": "firstName",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5103,7 +5114,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxLTpfD8/1E="
 									},
-									"name": "lastName"
+									"name": "lastName",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5111,7 +5123,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxLTpfD8/1E="
 									},
-									"name": "email"
+									"name": "email",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5119,7 +5132,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxLTpfD8/1E="
 									},
-									"name": "username"
+									"name": "username",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5127,7 +5141,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbxLTpfD8/1E="
 									},
-									"name": "password"
+									"name": "password",
+									"type": ""
 								}
 							]
 						}
@@ -5155,7 +5170,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbzhllQRi/sQ="
 									},
-									"name": "idBorrow"
+									"name": "idBorrow",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5163,7 +5179,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbzhllQRi/sQ="
 									},
-									"name": "borrowDate"
+									"name": "borrowDate",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5171,7 +5188,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbzhllQRi/sQ="
 									},
-									"name": "returnDate"
+									"name": "returnDate",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5179,7 +5197,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbzhllQRi/sQ="
 									},
-									"name": "actualReturnDate"
+									"name": "actualReturnDate",
+									"type": ""
 								}
 							]
 						}
@@ -5207,7 +5226,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbx7wbPHuIT0="
 									},
-									"name": "idNotification"
+									"name": "idNotification",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5215,7 +5235,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbx7wbPHuIT0="
 									},
-									"name": "type"
+									"name": "type",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5223,7 +5244,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbx7wbPHuIT0="
 									},
-									"name": "content"
+									"name": "content",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5231,7 +5253,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbx7wbPHuIT0="
 									},
-									"name": "isSent"
+									"name": "isSent",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5239,7 +5262,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbx7wbPHuIT0="
 									},
-									"name": "sentAt"
+									"name": "sentAt",
+									"type": ""
 								}
 							]
 						},
@@ -5323,7 +5347,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbz3csSteczc="
 									},
-									"name": "idReservation"
+									"name": "idReservation",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5331,7 +5356,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbz3csSteczc="
 									},
-									"name": "reservationDate"
+									"name": "reservationDate",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5339,7 +5365,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbz3csSteczc="
 									},
-									"name": "pickUpDate"
+									"name": "pickUpDate",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5347,7 +5374,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbz3csSteczc="
 									},
-									"name": "queuePosition"
+									"name": "queuePosition",
+									"type": ""
 								},
 								{
 									"_type": "UMLAttribute",
@@ -5355,7 +5383,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTbz3csSteczc="
 									},
-									"name": "isActive"
+									"name": "isActive",
+									"type": ""
 								}
 							]
 						}
