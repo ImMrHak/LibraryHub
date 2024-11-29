@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/services/microservices/ms-users/pom.xml" />
         <option value="$PROJECT_DIR$/services/microservices/ms-books/pom.xml" />
         <option value="$PROJECT_DIR$/services/infrastructure/discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/services/infrastructure/gateway-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
