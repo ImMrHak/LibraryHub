@@ -33,13 +33,7 @@ public class BookDomainService {
         return true;
     }
 
-    public Boolean deleteBook(Book book){
-        Book dbBook = findBookById(book.getIdBook());
-
-        if(dbBook == null) return false;
-
-        dbBook.setIsDeleted(true);
-
+    public Boolean deleteBook(Book dbBook){
         bookDomainRepository.save(dbBook);
         return true;
     }

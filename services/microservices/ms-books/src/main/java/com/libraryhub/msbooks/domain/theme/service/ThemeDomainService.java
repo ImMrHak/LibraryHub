@@ -20,7 +20,7 @@ public class ThemeDomainService {
         return themeDomainRepository.findById(id).orElse(null);
     }
 
-    public Theme saveBook(Theme theme){
+    public Theme saveTheme(Theme theme){
         return themeDomainRepository.save(theme);
     }
 
@@ -34,13 +34,19 @@ public class ThemeDomainService {
     }
 
     public Boolean deleteTheme(Theme theme){
-        Theme dbTheme = findThemeById(theme.getIdTheme());
-
-        if(dbTheme == null) return false;
-
-        dbTheme.setIsDeleted(true);
-
-        themeDomainRepository.save(dbTheme);
+        themeDomainRepository.save(theme);
         return true;
+    }
+
+    public Boolean existsThemeByName(String name){
+        return themeDomainRepository.existsThemeByName(name);
+    }
+
+    public Boolean existsByIdTheme(Long idTheme){
+        return themeDomainRepository.existsByIdTheme(idTheme);
+    }
+
+    public Theme findByName(String name){
+        return themeDomainRepository.findByName(name);
     }
 }

@@ -1,9 +1,10 @@
 package com.libraryhub.msbooks.application.book.request;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public record RecoverBookDTO(
-        @NotEmpty(message = "Field must not be empty")
+        @NotNull
         Long idBook
 ) {
 }
