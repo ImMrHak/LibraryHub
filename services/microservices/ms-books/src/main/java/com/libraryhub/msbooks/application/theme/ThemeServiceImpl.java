@@ -33,8 +33,6 @@ public class ThemeServiceImpl implements ThemeService {
 
         Theme dbTheme = themeDomainService.findThemeById(updateThemeDTO.idTheme());
 
-        if(dbTheme.getIsDeleted()) return "Theme does not exist because it's deleted";
-
         dbTheme.setName(updateThemeDTO.name());
 
         return themeMapper.mapThemeToDataThemeDTO(themeDomainService.saveTheme(dbTheme));
@@ -46,25 +44,7 @@ public class ThemeServiceImpl implements ThemeService {
 
         Theme dbTheme = themeDomainService.findThemeById(deleteThemeDTO.idTheme());
 
-        if(dbTheme.getIsDeleted()) return "Theme is already deleted";
-
-        dbTheme.setIsDeleted(true);
-
         return themeDomainService.deleteTheme(dbTheme);
-    }
-
-    @Override
-    public Object recoverTheme(RecoverThemeDTO recoverThemeDTO) {
-        if(!themeDomainService.existsByIdTheme(recoverThemeDTO.idTheme())) return "Theme does not exist";
-
-        Theme dbTheme = themeDomainService.findThemeById(recoverThemeDTO.idTheme());
-
-        if(!dbTheme.getIsDeleted()) return "Theme is already not deleted";
-
-        dbTheme.setIsDeleted(false);
-
-        themeDomainService.saveTheme(dbTheme);
-        return true;
     }
 
     @Override

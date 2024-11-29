@@ -34,7 +34,7 @@ public class ThemeDomainService {
     }
 
     public Boolean deleteTheme(Theme theme){
-        themeDomainRepository.save(theme);
+        themeDomainRepository.delete(theme);
         return true;
     }
 

@@ -18,7 +18,6 @@ public class Theme {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTheme;
     private String name;
-    private Boolean isDeleted;
 
     @ManyToMany(mappedBy = "themes") @JsonBackReference
     private Set<Book> books;

@@ -39,7 +39,6 @@ public class BookServiceImpl implements BookService {
 
             else {
                 Theme newTheme = themeMapper.mapCreateThemeDTOToTheme(themeDTO);
-                newTheme.setIsDeleted(false);
                 themeDomainService.saveTheme(newTheme);
                 themes.add(newTheme);
             }
@@ -73,7 +72,6 @@ public class BookServiceImpl implements BookService {
 
             else {
                 Theme newTheme = themeMapper.mapCreateThemeDTOToTheme(themeDTO);
-                newTheme.setIsDeleted(false);
                 themeDomainService.saveTheme(newTheme);
                 themes.add(newTheme);
             }
@@ -152,7 +150,6 @@ public class BookServiceImpl implements BookService {
 
             else {
                 Theme newTheme = themeMapper.mapCreateThemeDTOToTheme(themeDTO);
-                newTheme.setIsDeleted(false);
                 themeDomainService.saveTheme(newTheme);
                 themes.add(newTheme);
             }

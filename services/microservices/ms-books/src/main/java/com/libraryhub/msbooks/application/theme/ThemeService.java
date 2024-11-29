@@ -13,7 +13,6 @@ public interface ThemeService {
     Object createTheme(CreateThemeDTO createThemeDTO);
     Object updateTheme(UpdateThemeDTO updateThemeDTO);
     Object deleteTheme(DeleteThemeDTO deleteThemeDTO);
-    Object recoverTheme(RecoverThemeDTO recoverThemeDTO);
     List<DataThemeDTO> getThemes();
     DataThemeDTO getThemeById(Long id);
     Boolean existsThemeByName(String name);
