@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ms-users" />
         <module name="config-server" />
         <module name="discovery-server" />
+        <module name="ms-books" />
+        <module name="ms-users" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="config-server (1)" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="discovery-server (1)" options="-parameters" />
+      <module name="ms-books" options="-parameters" />
       <module name="ms-users" options="-parameters" />
     </option>
   </component>
