@@ -1,16 +1,20 @@
 package com.libraryhub.msusers.application.user;
 
-import com.libraryhub.msusers.application.user.record.request.UserRequestDTO;
-import com.libraryhub.msusers.application.user.record.response.UserResponseDTO;
-import com.libraryhub.msusers.domain.user.model.User;
+import com.libraryhub.msusers.application.user.record.request.DeleteUserDTO;
+import com.libraryhub.msusers.application.user.record.request.RecoverUserDTO;
+import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
+import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
+import com.libraryhub.msusers.application.user.record.response.DataUserDTO;
 
 import java.util.List;
 
 public interface UserService {
-    UserResponseDTO createUser(UserRequestDTO userRequestDto);
-/*    UserResponseDTO updateUser(updateuserdto);
-    String deleteUser(String userId);
-    List<UserResponseDTO> getAllUser();
-    UserResponseDTO getUserById(String userId);
-*/
+    Object createUser(CreateUserDTO createUserDto);
+    Object updateUser(UpdateUserDTO updateUserDTO);
+    Object deleteUser(DeleteUserDTO deleteUserDTO);
+    Object recoverUser(RecoverUserDTO recoverUserDTO);
+    List<DataUserDTO> getUsers();
+    DataUserDTO getUserById(String id);
+    List<DataUserDTO> getDeletedUsers();
+    DataUserDTO getDeletedUserById(String id);
 }

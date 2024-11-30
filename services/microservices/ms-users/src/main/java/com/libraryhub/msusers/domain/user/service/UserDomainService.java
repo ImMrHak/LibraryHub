@@ -29,21 +29,20 @@ public class UserDomainService {
     public Boolean deleteUserById(String id) {
         User dbUser = findUserById(id);
 
-        if(dbUser == null) return false;
-
-        dbUser.setIsDeleted(true);
-
         userDomainRepository.save(dbUser);
         return true;
     }
 
     public Boolean deleteUser(User user) {
-        User dbUser = findUserById(user.getIdUser());
-        if(dbUser == null) return false;
-
-        dbUser.setIsDeleted(true);
-
-        userDomainRepository.save(dbUser);
+        userDomainRepository.save(user);
         return true;
+    }
+
+    public Boolean existsUserById(String id) {
+        return userDomainRepository.existsById(id);
+    }
+
+    public Boolean existsByUsername(String userName) {
+        return userDomainRepository.existsById(userName);
     }
 }

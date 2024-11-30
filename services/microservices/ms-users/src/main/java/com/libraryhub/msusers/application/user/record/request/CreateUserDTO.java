@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-public record UserRequestDTO(
+public record CreateUserDTO(
         @NotEmpty(message = "Field must not be empty")
         String username,
         @NotEmpty(message = "Field must not be empty")
