@@ -4,6 +4,7 @@ import com.libraryhub.msusers.adapter.wrapper.ResponseWrapper;
 import com.libraryhub.msusers.application.user.UserService;
 import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
 import com.libraryhub.msusers.application.user.record.request.DeleteUserDTO;
+import com.libraryhub.msusers.application.user.record.request.RecoverUserDTO;
 import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -60,6 +61,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(data));
     }
 
+    @PutMapping("/recover")
+    public ResponseEntity<?> recoverUser(@Valid @RequestBody RecoverUserDTO recoverUserDTO){
+        Object data = userService.recoverUser(recoverUserDTO);
+
+        if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.error((String) data));
+
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(data));
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteUser(@Valid @RequestBody DeleteUserDTO deleteUserDTO){
         Object data = userService.deleteUser(deleteUserDTO);
@@ -68,7 +78,6 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(data));
     }
-
 
 }
 
