@@ -1,4 +1,4 @@
-package com.libraryhub.msborrows;
+package com.libraryhub.msreservations;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class MsBorrowsApplication {
+public class MsReservationsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MsBorrowsApplication.class, args);
+        SpringApplication.run(MsReservationsApplication.class, args);
     }
 
 }
