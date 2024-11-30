@@ -12,6 +12,7 @@
         <module name="discovery-server" />
         <module name="ms-books" />
         <module name="ms-users" />
+        <module name="ms-borrows" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -27,6 +28,7 @@
       <module name="discovery-server (1)" options="-parameters" />
       <module name="gateway-server" options="-parameters" />
       <module name="ms-books" options="-parameters" />
+      <module name="ms-borrows" options="-parameters" />
       <module name="ms-users" options="-parameters" />
     </option>
   </component>
