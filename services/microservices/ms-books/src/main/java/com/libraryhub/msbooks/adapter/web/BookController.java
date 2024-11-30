@@ -70,6 +70,15 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(data));
     }
 
+    @PutMapping("/recover")
+    public ResponseEntity<?> recoverBook(@Valid @RequestBody RecoverBookDTO recoverBookDTO) {
+        Object data = bookService.recoverBook(recoverBookDTO);
+
+        if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.error((String) data));
+
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(data));
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteBook(@Valid @RequestBody DeleteBookDTO deleteBookDTO) {
         Object data = bookService.deleteBook(deleteBookDTO);
