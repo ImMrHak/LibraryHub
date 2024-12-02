@@ -1,7 +1,7 @@
 package com.libraryhub.msbooks.application.book;
 
-import com.libraryhub.msbooks.application.book.request.*;
-import com.libraryhub.msbooks.application.book.response.DataBookDTO;
+import com.libraryhub.msbooks.application.book.record.request.*;
+import com.libraryhub.msbooks.application.book.record.response.DataBookDTO;
 
 import java.util.List;
 

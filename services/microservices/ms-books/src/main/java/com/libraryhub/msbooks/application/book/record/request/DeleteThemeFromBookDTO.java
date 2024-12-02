@@ -1,4 +1,4 @@
-package com.libraryhub.msbooks.application.book.request;
+package com.libraryhub.msbooks.application.book.record.request;
 
 import com.libraryhub.msbooks.application.theme.request.DeleteThemeDTO;
 import com.libraryhub.msbooks.application.theme.response.DataThemeDTO;

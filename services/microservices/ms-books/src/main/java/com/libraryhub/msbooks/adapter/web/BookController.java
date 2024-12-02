@@ -2,7 +2,7 @@ package com.libraryhub.msbooks.adapter.web;
 
 import com.libraryhub.msbooks.adapter.wrapper.ResponseWrapper;
 import com.libraryhub.msbooks.application.book.BookService;
-import com.libraryhub.msbooks.application.book.request.*;
+import com.libraryhub.msbooks.application.book.record.request.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

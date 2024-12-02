@@ -1,7 +1,6 @@
-package com.libraryhub.msbooks.application.book.response;
+package com.libraryhub.msbooks.application.book.record.response;
 
 import com.libraryhub.msbooks.application.theme.response.DataThemeDTO;
-import com.libraryhub.msbooks.domain.theme.model.Theme;
 
 import java.util.Set;
 

@@ -1,13 +1,11 @@
 package com.libraryhub.msbooks.application.book;
 
 import com.libraryhub.msbooks.application.book.mapper.BookMapper;
-import com.libraryhub.msbooks.application.book.request.*;
-import com.libraryhub.msbooks.application.book.response.DataBookDTO;
-import com.libraryhub.msbooks.application.theme.ThemeService;
+import com.libraryhub.msbooks.application.book.record.request.*;
+import com.libraryhub.msbooks.application.book.record.response.DataBookDTO;
 import com.libraryhub.msbooks.application.theme.mapper.ThemeMapper;
 import com.libraryhub.msbooks.application.theme.request.CreateThemeDTO;
 import com.libraryhub.msbooks.application.theme.request.DeleteThemeDTO;
-import com.libraryhub.msbooks.application.theme.response.DataThemeDTO;
 import com.libraryhub.msbooks.domain.book.model.Book;
 import com.libraryhub.msbooks.domain.book.service.BookDomainService;
 import com.libraryhub.msbooks.domain.theme.model.Theme;

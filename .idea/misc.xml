@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -12,8 +11,8 @@
         <option value="$PROJECT_DIR$/services/microservices/ms-books/pom.xml" />
         <option value="$PROJECT_DIR$/services/infrastructure/discovery-server/pom.xml" />
         <option value="$PROJECT_DIR$/services/infrastructure/gateway-server/pom.xml" />
-          <option value="$PROJECT_DIR$/services/microservices/ms-reservations/pom.xml" />
-          <option value="$PROJECT_DIR$/services/microservices/ms-borrows/pom.xml" />
+        <option value="$PROJECT_DIR$/services/microservices/ms-reservations/pom.xml" />
+        <option value="$PROJECT_DIR$/services/microservices/ms-borrows/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
