@@ -1,8 +1,8 @@
-package com.libraryhub.msborrows.infrastructure.booksOF.themes;
+package com.libraryhub.msreservations.infrastructure.booksOF.themes;
 
-import com.libraryhub.msborrows.infrastructure.booksOF.themes.record.request.CreateThemeDTO;
-import com.libraryhub.msborrows.infrastructure.booksOF.themes.record.request.DeleteThemeDTO;
-import com.libraryhub.msborrows.infrastructure.booksOF.themes.record.request.UpdateThemeDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.themes.record.request.CreateThemeDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.themes.record.request.DeleteThemeDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.themes.record.request.UpdateThemeDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,12 +1,14 @@
-package com.libraryhub.msbooks.application.book.record.request;
+package com.libraryhub.msreservations.infrastructure.booksOF.books.record.request;
 
-import com.libraryhub.msbooks.application.theme.record.request.CreateThemeDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.themes.record.request.CreateThemeDTO;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Set;
 
-public record CreateBookDTO(
+public record UpdateBookDTO(
+        @NotNull
+        Long idBook,
         @NotEmpty(message = "Field must not be empty")
         String title,
         @NotEmpty(message = "Field must not be empty")

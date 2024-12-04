@@ -1,8 +1,8 @@
-package com.libraryhub.msborrows.infrastructure.booksOF.books;
+package com.libraryhub.msreservations.infrastructure.booksOF.books;
 
-import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.CreateBookDTO;
-import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.DeleteBookDTO;
-import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.UpdateBookDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.books.record.request.CreateBookDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.books.record.request.DeleteBookDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.books.record.request.UpdateBookDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package com.libraryhub.msbooks.application.book.record.response;
+package com.libraryhub.msreservations.infrastructure.booksOF.books.record.response;
 
-import com.libraryhub.msbooks.application.theme.record.response.DataThemeDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.themes.record.response.DataThemeDTO;
 
 import java.util.Set;
 

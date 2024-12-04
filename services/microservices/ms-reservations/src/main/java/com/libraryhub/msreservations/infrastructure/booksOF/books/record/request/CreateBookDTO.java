@@ -1,6 +1,6 @@
-package com.libraryhub.msbooks.application.book.record.request;
+package com.libraryhub.msreservations.infrastructure.booksOF.books.record.request;
 
-import com.libraryhub.msbooks.application.theme.record.request.CreateThemeDTO;
+import com.libraryhub.msreservations.infrastructure.booksOF.themes.record.request.CreateThemeDTO;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 

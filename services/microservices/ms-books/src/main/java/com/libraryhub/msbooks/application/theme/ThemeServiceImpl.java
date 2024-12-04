@@ -1,11 +1,10 @@
 package com.libraryhub.msbooks.application.theme;
 
 import com.libraryhub.msbooks.application.theme.mapper.ThemeMapper;
-import com.libraryhub.msbooks.application.theme.request.CreateThemeDTO;
-import com.libraryhub.msbooks.application.theme.request.DeleteThemeDTO;
-import com.libraryhub.msbooks.application.theme.request.RecoverThemeDTO;
-import com.libraryhub.msbooks.application.theme.request.UpdateThemeDTO;
-import com.libraryhub.msbooks.application.theme.response.DataThemeDTO;
+import com.libraryhub.msbooks.application.theme.record.request.CreateThemeDTO;
+import com.libraryhub.msbooks.application.theme.record.request.DeleteThemeDTO;
+import com.libraryhub.msbooks.application.theme.record.request.UpdateThemeDTO;
+import com.libraryhub.msbooks.application.theme.record.response.DataThemeDTO;
 import com.libraryhub.msbooks.domain.theme.model.Theme;
 import com.libraryhub.msbooks.domain.theme.service.ThemeDomainService;
 import lombok.RequiredArgsConstructor;
