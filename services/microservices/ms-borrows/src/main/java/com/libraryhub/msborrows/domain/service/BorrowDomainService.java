@@ -16,21 +16,21 @@ public class BorrowDomainService {
         return borrowDomainRepository.findAll();
     }
 
-    public Borrow findReservationById(Long id){
+    public Borrow findBorrowById(Long id){
         return borrowDomainRepository.findById(id).orElse(null);
     }
 
-    public Borrow saveReservation(Borrow reservation){
-        return borrowDomainRepository.save(reservation);
+    public Borrow saveBorrow(Borrow borrow){
+        return borrowDomainRepository.save(borrow);
     }
 
-    public Boolean deleteReservationById(Long id){
+    public Boolean deleteBorrowById(Long id){
         borrowDomainRepository.deleteById(id);
         return true;
     }
 
-    public Boolean deleteReservation(Borrow dbReservation){
-        borrowDomainRepository.delete(dbReservation);
+    public Boolean deleteBorrow(Borrow dbBorrow){
+        borrowDomainRepository.delete(dbBorrow);
         return true;
     }
 }
