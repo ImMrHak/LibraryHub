@@ -11,9 +11,12 @@ public interface BookService {
     Object deleteBook(DeleteBookDTO deleteBookDTO);
     Object recoverBook(RecoverBookDTO recoverBookDTO);
     List<DataBookDTO> getBooks();
+    List<DataBookDTO> getAvailableBooks();
+    List<DataBookDTO> getUnavailableBooks();
     DataBookDTO getBookById(Long id);
     List<DataBookDTO> getDeletedBooks();
     DataBookDTO getDeletedBookById(Long id);
     Object addThemeToBook(AddThemeToBookDTO addThemeToBookDTO);
     Object deleteThemeFromBook(DeleteThemeFromBookDTO deleteThemeFromBookDTO);
+    Object changeBookAvailability(UpdateBookAvailabilityDTO updateBookAvailabilityDTO);
 }

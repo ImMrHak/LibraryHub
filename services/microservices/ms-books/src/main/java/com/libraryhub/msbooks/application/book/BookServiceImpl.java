@@ -113,6 +113,16 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<DataBookDTO> getAvailableBooks() {
+        return bookDomainService.findAll().stream().filter(Book::getIsAvailable).map(bookMapper::mapBookToDataBookDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DataBookDTO> getUnavailableBooks() {
+        return bookDomainService.findAll().stream().filter(b -> !b.getIsAvailable()).map(bookMapper::mapBookToDataBookDTO).collect(Collectors.toList());
+    }
+
+    @Override
     public DataBookDTO getBookById(Long id) {
         Book dbBook = bookDomainService.findBookById(id);
 
@@ -167,6 +177,17 @@ public class BookServiceImpl implements BookService {
         for(DeleteThemeDTO themeDTO : deleteThemeFromBookDTO.themes()){
             dbBook.getThemes().removeIf(theme -> theme.getIdTheme().equals(themeDTO.idTheme()));
         }
+
+        return bookMapper.mapBookToDataBookDTO(bookDomainService.saveBook(dbBook));
+    }
+
+    @Override
+    public Object changeBookAvailability(UpdateBookAvailabilityDTO updateBookAvailabilityDTO) {
+        if(!bookDomainService.existsByIdBook(updateBookAvailabilityDTO.idBook())) return "Book does not exist";
+
+        Book dbBook = bookDomainService.findBookById(updateBookAvailabilityDTO.idBook());
+
+        dbBook.setIsAvailable(updateBookAvailabilityDTO.isAvailable());
 
         return bookMapper.mapBookToDataBookDTO(bookDomainService.saveBook(dbBook));
     }

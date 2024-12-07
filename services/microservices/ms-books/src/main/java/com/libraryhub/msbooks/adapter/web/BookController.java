@@ -21,6 +21,20 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @GetMapping("/available")
+    public ResponseEntity<?> getAvailableBooks() {
+        Object data = bookService.getAvailableBooks();
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+    @GetMapping("/unavailable")
+    public ResponseEntity<?> getUnavailableBooks() {
+        Object data = bookService.getUnavailableBooks();
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
     @GetMapping("/{idBook}")
     public ResponseEntity<?> getBookById(@PathVariable("idBook") Long idBook) {
         Object data = bookService.getBookById(idBook);
@@ -54,6 +68,15 @@ public class BookController {
     @PutMapping("/update")
     public ResponseEntity<?> updateBook(@Valid @RequestBody UpdateBookDTO updateBookDTO) {
         Object data = bookService.updateBook(updateBookDTO);
+
+        if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+    @PutMapping("/update/availability")
+    public ResponseEntity<?> updateBookAvailability(@Valid @RequestBody UpdateBookAvailabilityDTO updateBookAvailabilityDTO) {
+        Object data = bookService.changeBookAvailability(updateBookAvailabilityDTO);
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
 
