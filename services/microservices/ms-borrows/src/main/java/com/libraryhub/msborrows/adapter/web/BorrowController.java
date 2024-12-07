@@ -4,13 +4,14 @@ import com.libraryhub.msborrows.application.BorrowService;
 import com.libraryhub.msborrows.application.record.request.*;
 import com.libraryhub.msborrows.infrastructure.booksOF.books.BooksExternalService;
 import com.libraryhub.msborrows.infrastructure.usersOF.users.UsersExternalService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/borrow")
+@RequestMapping("/api/v1/borrows")
 @RequiredArgsConstructor
 public class BorrowController {
     private final BorrowService borrowService;
@@ -18,20 +19,20 @@ public class BorrowController {
     private final UsersExternalService usersExternalService;
 
 
-    @GetMapping()
-    ResponseEntity<?> getBorrow(GetBorrowDTO getBorrowDTO){
+    @PostMapping()
+    public ResponseEntity<?> getBorrow(@Valid @RequestBody GetBorrowDTO getBorrowDTO){
         Object data = borrowService.getBorrow(getBorrowDTO);
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping()
-    ResponseEntity<?> getBorrowById(GetBorrowByIdDTO getBorrowByIdDTO){
+    @PostMapping("/d")
+    public ResponseEntity<?> getBorrowById(@Valid @RequestBody GetBorrowByIdDTO getBorrowByIdDTO){
         Object data = borrowService.getBorrowById(getBorrowByIdDTO);
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @PostMapping("/create")
-    ResponseEntity<?> createBorrow(CreateBorrowDTO createBorrowDTO){
+    public ResponseEntity<?> createBorrow(@Valid @RequestBody CreateBorrowDTO createBorrowDTO){
         Object data = borrowService.createBorrow(createBorrowDTO);
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
@@ -40,7 +41,7 @@ public class BorrowController {
     }
 
     @PutMapping("/update")
-    ResponseEntity<?> updateBorrow(UpdateBorrowDTO updateBorrowDTO){
+    public ResponseEntity<?> updateBorrow(@Valid @RequestBody UpdateBorrowDTO updateBorrowDTO){
         Object data = borrowService.updateBorrow(updateBorrowDTO);
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
@@ -49,7 +50,7 @@ public class BorrowController {
     }
 
     @DeleteMapping("/delete")
-    ResponseEntity<?> deleteBorrow(DeleteBorrowDTO deleteBorrowDTO){
+    public ResponseEntity<?> deleteBorrow(@Valid @RequestBody DeleteBorrowDTO deleteBorrowDTO){
         Object data = borrowService.deleteBorrow(deleteBorrowDTO);
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);

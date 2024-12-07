@@ -1,5 +1,6 @@
 package com.libraryhub.msborrows.application;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.libraryhub.msborrows.application.mapper.BorrowMapper;
 import com.libraryhub.msborrows.application.record.request.*;
 import com.libraryhub.msborrows.application.record.response.DataBorrowDTO;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,17 +30,23 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public Object createBorrow(CreateBorrowDTO createBorrowDTO) {
-        if(createBorrowDTO.borrowDate().before(createBorrowDTO.returnDate())) return "Borrow date must be before return date";
+        if(createBorrowDTO.borrowDate().after(createBorrowDTO.returnDate())) return "Borrow date must be before return date";
 
-        DataBookDTO dataBookDTO = (DataBookDTO) booksExternalService.getBookById(createBorrowDTO.idBook()).getBody();
-        DataUserDTO dataUserDTO = (DataUserDTO) usersExternalService.getUserById(createBorrowDTO.idUser()).getBody();
+        Object responseBookBody = booksExternalService.getBookById(createBorrowDTO.idBook()).getBody();
+        DataBookDTO dataBookDTO = new ObjectMapper().convertValue(responseBookBody, DataBookDTO.class);
+
+
+        Object responseUserBody = usersExternalService.getUserById(createBorrowDTO.idUser()).getBody();
+        DataUserDTO dataUserDTO = new ObjectMapper().convertValue(responseUserBody, DataUserDTO.class);
 
         if(dataBookDTO == null) return "the book not exist";
         if(dataUserDTO == null) return "the user not exist";
         if(!dataBookDTO.isAvailable()) return "the book not availabale";
 
-        var response = booksExternalService.updateBookAvailability(new UpdateBookAvailabilityDTO(dataBookDTO.idBook(), false));
-        if (response == null || !(response.getBody() instanceof DataBookDTO updatedBookDTO) || updatedBookDTO.isAvailable()) {
+        responseBookBody = booksExternalService.updateBookAvailability(new UpdateBookAvailabilityDTO(dataBookDTO.idBook(), false)).getBody();
+        dataBookDTO = new ObjectMapper().convertValue(responseBookBody, DataBookDTO.class);
+
+        if (responseBookBody == null || dataBookDTO.isAvailable()) {
             return "Error updating book availability";
         }
 
@@ -52,18 +60,25 @@ public class BorrowServiceImpl implements BorrowService {
         Borrow dbBorrow = borrowDomainService.findBorrowById(updateBorrowDTO.idBorrow());
         if(!dbBorrow.getIdUser().equals(updateBorrowDTO.idUser())) return "this is not your borrow";
 
-        if(dbBorrow.getBorrowDate().before(updateBorrowDTO.returnDate())) return "Borrow date must be before return date";
+        if(dbBorrow.getBorrowDate().after(updateBorrowDTO.returnDate())) return "Borrow date must be before return date";
 
-        DataBookDTO dataBookDTO = (DataBookDTO) booksExternalService.getBookById(updateBorrowDTO.idBook()).getBody();
-        DataUserDTO dataUserDTO = (DataUserDTO) usersExternalService.getUserById(updateBorrowDTO.idUser()).getBody();
+        Object responseBookBody = booksExternalService.getBookById(updateBorrowDTO.idBook()).getBody();
+        DataBookDTO dataBookDTO = new ObjectMapper().convertValue(responseBookBody, DataBookDTO.class);
+
+        Object responseUserBody = usersExternalService.getUserById(updateBorrowDTO.idUser()).getBody();
+        DataUserDTO dataUserDTO = new ObjectMapper().convertValue(responseUserBody, DataUserDTO.class);
 
         if(dataBookDTO == null) return "the book not exist";
         if(dataUserDTO == null) return "the user not exist";
         if(!dataBookDTO.isAvailable()) return "the book not availabale";
+        if(!Objects.equals(dbBorrow.getIdBook(), dataBookDTO.idBook())){
+            booksExternalService.updateBookAvailability(new UpdateBookAvailabilityDTO(dbBorrow.getIdBook(), true)).getBody();
 
-        var response = booksExternalService.updateBookAvailability(new UpdateBookAvailabilityDTO(dataBookDTO.idBook(), false));
-        if (response == null || !(response.getBody() instanceof DataBookDTO updatedBookDTO) || updatedBookDTO.isAvailable()) {
-            return "Error updating book availability";
+
+            Object responseNewBookBody = booksExternalService.getBookById(updateBorrowDTO.idBorrow()).getBody();
+            DataBookDTO dataNewBookDTO = new ObjectMapper().convertValue(responseNewBookBody, DataBookDTO.class);
+
+            dbBorrow.setIdBook(dataNewBookDTO.idBook());
         }
 
         dbBorrow.setReturnDate(updateBorrowDTO.returnDate());
@@ -87,14 +102,14 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public List<DataBorrowDTO> getBorrow(GetBorrowDTO getBorrowDTO) {
-        return borrowDomainService.findAll().stream().filter(b ->b.getIdUser().equals(getBorrowDTO.IdUser())).map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
+        return borrowDomainService.findAll().stream().filter(b ->b.getIdUser().equals(getBorrowDTO.idUser())).map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
     }
 
     @Override
     public DataBorrowDTO getBorrowById(GetBorrowByIdDTO getBorrowByIdDTO) {
         if(!borrowDomainService.existsByIdBorrow(getBorrowByIdDTO.idBorrow())) return null;
         Borrow dbBorrow = borrowDomainService.findBorrowById(getBorrowByIdDTO.idBorrow());
-        if(!dbBorrow.getIdUser().equals(getBorrowByIdDTO.IdUser())) return null;
+        if(!dbBorrow.getIdUser().equals(getBorrowByIdDTO.idUser())) return null;
 
         return borrowMapper.mapBorrowToDataBorrowDTO(dbBorrow);
     }

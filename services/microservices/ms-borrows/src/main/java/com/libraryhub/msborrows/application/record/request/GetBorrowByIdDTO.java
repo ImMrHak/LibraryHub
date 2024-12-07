@@ -6,6 +6,6 @@ public record GetBorrowByIdDTO(
         @NotNull
         Long idBorrow,
         @NotNull
-        String IdUser
+        String idUser
 ) {
 }
