@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BorrowDomainRepository extends JpaRepository<Borrow, Long> {
+    Boolean existsByIdBorrow(Long id);
 }

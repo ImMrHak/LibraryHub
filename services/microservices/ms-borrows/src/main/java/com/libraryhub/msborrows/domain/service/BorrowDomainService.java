@@ -33,4 +33,8 @@ public class BorrowDomainService {
         borrowDomainRepository.delete(dbBorrow);
         return true;
     }
+
+    public Boolean existsByIdBorrow(Long idBorrow){
+        return borrowDomainRepository.existsById(idBorrow);
+    }
 }

@@ -2,6 +2,7 @@ package com.libraryhub.msborrows.infrastructure.booksOF.books;
 
 import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.CreateBookDTO;
 import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.DeleteBookDTO;
+import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.UpdateBookAvailabilityDTO;
 import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.UpdateBookDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -23,4 +24,7 @@ public interface BooksExternalService {
 
     @DeleteMapping("/delete")
     ResponseEntity<?> deleteBook(@RequestBody DeleteBookDTO deleteBookDTO);
+
+    @PutMapping("/update/availability")
+    ResponseEntity<?> updateBookAvailability(@RequestBody UpdateBookAvailabilityDTO updateBookAvailabilityDTO);
 }

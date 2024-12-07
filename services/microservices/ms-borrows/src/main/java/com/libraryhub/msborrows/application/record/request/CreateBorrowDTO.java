@@ -10,8 +10,6 @@ public record CreateBorrowDTO(
         @NotNull
         Date returnDate,
         @NotNull
-        Date actualReturnDate,
-        @NotNull
         String idUser,
         @NotNull
         Long idBook
