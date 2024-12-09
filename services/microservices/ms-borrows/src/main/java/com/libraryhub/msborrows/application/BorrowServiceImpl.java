@@ -15,6 +15,7 @@ import com.libraryhub.msborrows.infrastructure.usersOF.users.record.response.Dat
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public Object createBorrow(CreateBorrowDTO createBorrowDTO) {
-        if(createBorrowDTO.borrowDate().after(createBorrowDTO.returnDate())) return "Borrow date must be before return date";
+        if(new Date(System.currentTimeMillis()).after(createBorrowDTO.returnDate())) return "Borrow date must be before return date";
 
         Object responseBookBody = booksExternalService.getBookById(createBorrowDTO.idBook()).getBody();
         DataBookDTO dataBookDTO = new ObjectMapper().convertValue(responseBookBody, DataBookDTO.class);
@@ -50,7 +51,10 @@ public class BorrowServiceImpl implements BorrowService {
             return "Error updating book availability";
         }
 
-        return borrowMapper.mapBorrowToDataBorrowDTO(borrowDomainService.saveBorrow(borrowMapper.mapCreateBorrowDTOToBorrow(createBorrowDTO)));
+        Borrow borrow = borrowMapper.mapCreateBorrowDTOToBorrow(createBorrowDTO);
+        borrow.setBorrowDate(new Date(System.currentTimeMillis()));
+
+        return borrowMapper.mapBorrowToDataBorrowDTO(borrowDomainService.saveBorrow(borrow));
     }
 
     @Override

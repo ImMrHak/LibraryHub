@@ -6,8 +6,6 @@ import java.util.Date;
 
 public record CreateBorrowDTO(
         @NotNull
-        Date borrowDate,
-        @NotNull
         Date returnDate,
         @NotNull
         String idUser,
