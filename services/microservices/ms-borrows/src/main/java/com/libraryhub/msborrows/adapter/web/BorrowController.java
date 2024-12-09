@@ -19,21 +19,21 @@ public class BorrowController {
     private final UsersExternalService usersExternalService;
 
 
-    @PostMapping()
-    public ResponseEntity<?> getBorrow(@Valid @RequestBody GetBorrowDTO getBorrowDTO){
-        Object data = borrowService.getBorrow(getBorrowDTO);
+    @GetMapping("/{idUser}")
+    public ResponseEntity<?> getBorrows(@PathVariable("idUser") String idUser){
+        Object data = borrowService.getBorrow(new GetBorrowDTO(idUser));
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PostMapping("/d")
-    public ResponseEntity<?> getBorrowById(@Valid @RequestBody GetBorrowByIdDTO getBorrowByIdDTO){
-        Object data = borrowService.getBorrowById(getBorrowByIdDTO);
+    @GetMapping("/{idUser}/{idBorrow}")
+    public ResponseEntity<?> getBorrowById(@PathVariable("idUser") String idUser, @PathVariable("idBorrow") Long idBorrow){
+        Object data = borrowService.getBorrowById(new GetBorrowByIdDTO(idBorrow,idUser));
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PostMapping("/latestBorrowedBook")
-    public ResponseEntity<?> getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO){
-        Object data = borrowService.getLatestBorrowByIdBook(getLatestBorrowByIdBookDTO);
+    @GetMapping("/latestBorrowedBook/{idBook}")
+    public ResponseEntity<?> getLatestBorrowByIdBook(@PathVariable("idBook") Long idBook){
+        Object data = borrowService.getLatestBorrowByIdBook(new GetLatestBorrowByIdBookDTO(idBook));
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
