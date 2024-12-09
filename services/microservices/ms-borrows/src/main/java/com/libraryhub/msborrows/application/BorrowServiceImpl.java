@@ -113,4 +113,9 @@ public class BorrowServiceImpl implements BorrowService {
 
         return borrowMapper.mapBorrowToDataBorrowDTO(dbBorrow);
     }
+
+    @Override
+    public DataBorrowDTO getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO) {
+        return borrowMapper.mapBorrowToDataBorrowDTO(borrowDomainService.findFirstByIdBookOrderByReturnDate(getLatestBorrowByIdBookDTO.idBook()));
+    }
 }

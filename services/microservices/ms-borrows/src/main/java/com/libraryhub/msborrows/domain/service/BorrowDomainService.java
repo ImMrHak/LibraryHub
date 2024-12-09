@@ -37,4 +37,8 @@ public class BorrowDomainService {
     public Boolean existsByIdBorrow(Long idBorrow){
         return borrowDomainRepository.existsById(idBorrow);
     }
+
+    public Borrow findFirstByIdBookOrderByReturnDate(Long idBook){
+        return borrowDomainRepository.findFirstByIdBookOrderByReturnDate(idBook);
+    }
 }

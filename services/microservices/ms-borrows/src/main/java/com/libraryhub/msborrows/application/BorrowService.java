@@ -11,4 +11,5 @@ public interface BorrowService {
     Object deleteBorrow(DeleteBorrowDTO deleteBorrowDTO);
     List<DataBorrowDTO> getBorrow(GetBorrowDTO getBorrowDTO);
     DataBorrowDTO getBorrowById(GetBorrowByIdDTO getBorrowByIdDTO);
+    DataBorrowDTO getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO);
 }
