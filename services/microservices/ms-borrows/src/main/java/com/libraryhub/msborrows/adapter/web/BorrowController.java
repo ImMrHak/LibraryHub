@@ -31,6 +31,12 @@ public class BorrowController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @PostMapping("/latestBorrowedBook")
+    public ResponseEntity<?> getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO){
+        Object data = borrowService.getLatestBorrowByIdBook(getLatestBorrowByIdBookDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> createBorrow(@Valid @RequestBody CreateBorrowDTO createBorrowDTO){
         Object data = borrowService.createBorrow(createBorrowDTO);
