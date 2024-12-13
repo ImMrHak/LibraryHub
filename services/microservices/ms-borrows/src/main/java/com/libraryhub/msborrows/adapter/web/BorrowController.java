@@ -15,13 +15,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BorrowController {
     private final BorrowService borrowService;
-    private final BooksExternalService booksExternalService;
-    private final UsersExternalService usersExternalService;
-
 
     @GetMapping("/{idUser}")
     public ResponseEntity<?> getBorrows(@PathVariable("idUser") String idUser){
-        Object data = borrowService.getBorrow(new GetBorrowDTO(idUser));
+        Object data = borrowService.getBorrows(new GetBorrowDTO(idUser));
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 

@@ -9,7 +9,6 @@ public record UpdateReservationDTO(
         Long idReservation,
         @NotNull
         Date reservationDate,
-        @NotNull
         Date pickUpDate,
         @NotNull
         Long idBook

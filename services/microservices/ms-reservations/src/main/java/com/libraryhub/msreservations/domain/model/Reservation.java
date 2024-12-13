@@ -20,7 +20,6 @@ public class Reservation {
     private Long idReservation;
     private Date reservationDate;
     private Date pickUpDate;
-    private Integer queuePosition;
     private Boolean isActive;
 
     private String idUser;

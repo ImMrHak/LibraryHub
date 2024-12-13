@@ -3627,7 +3627,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 813,
-											"top": 225,
+											"top": 241,
 											"height": 13
 										},
 										{
@@ -3639,7 +3639,7 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 813,
-											"top": 471,
+											"top": 479,
 											"width": 116.603515625,
 											"height": 13,
 											"text": "Reservation"
@@ -3654,7 +3654,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 813,
-											"top": 225,
+											"top": 241,
 											"width": 189.26171875,
 											"height": 13,
 											"text": "(from ReservationsMicroService)"
@@ -3669,7 +3669,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 813,
-											"top": 225,
+											"top": 241,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
@@ -3677,7 +3677,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 808,
-									"top": 464,
+									"top": 472,
 									"width": 126.603515625,
 									"height": 25,
 									"stereotypeLabel": {
@@ -3715,7 +3715,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 813,
-											"top": 494,
+											"top": 502,
 											"width": 116.603515625,
 											"height": 13,
 											"text": "+idReservation",
@@ -3733,7 +3733,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 813,
-											"top": 509,
+											"top": 517,
 											"width": 116.603515625,
 											"height": 13,
 											"text": "+reservationDate",
@@ -3751,28 +3751,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 813,
-											"top": 524,
+											"top": 532,
 											"width": 116.603515625,
 											"height": 13,
 											"text": "+pickUpDate",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGTb0NO/mmA6G4=",
-											"_parent": {
-												"$ref": "AAAAAAGTbz3csStpcmg="
-											},
-											"model": {
-												"$ref": "AAAAAAGTb0NO+2l0uds="
-											},
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"left": 813,
-											"top": 539,
-											"width": 116.603515625,
-											"height": 13,
-											"text": "+queuePosition",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3787,7 +3769,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 813,
-											"top": 554,
+											"top": 547,
 											"width": 116.603515625,
 											"height": 13,
 											"text": "+isActive",
@@ -3797,9 +3779,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 808,
-									"top": 489,
+									"top": 497,
 									"width": 126.603515625,
-									"height": 83
+									"height": 68
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -3813,7 +3795,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 808,
-									"top": 572,
+									"top": 565,
 									"width": 126.603515625,
 									"height": 10
 								},
@@ -3830,7 +3812,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 482.5,
-									"top": 80.5,
+									"top": 88.5,
 									"width": 10,
 									"height": 10
 								},
@@ -3847,7 +3829,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 482.5,
-									"top": 80.5,
+									"top": 88.5,
 									"width": 10,
 									"height": 10
 								}
@@ -3859,9 +3841,9 @@
 							"parentStyle": false,
 							"containerChangeable": true,
 							"left": 808,
-							"top": 464,
+							"top": 472,
 							"width": 125.603515625,
-							"height": 118,
+							"height": 103,
 							"nameCompartment": {
 								"$ref": "AAAAAAGTbz3csStk4Ic="
 							},
@@ -4486,7 +4468,7 @@
 								"$ref": "AAAAAAGTbz3csStj4uk="
 							},
 							"lineStyle": 1,
-							"points": "881:583;900:688"
+							"points": "880:576;900:688"
 						},
 						{
 							"_type": "UMLAssociationView",
@@ -5366,15 +5348,6 @@
 										"$ref": "AAAAAAGTbz3csSteczc="
 									},
 									"name": "pickUpDate",
-									"type": ""
-								},
-								{
-									"_type": "UMLAttribute",
-									"_id": "AAAAAAGTb0NO+2l0uds=",
-									"_parent": {
-										"$ref": "AAAAAAGTbz3csSteczc="
-									},
-									"name": "queuePosition",
 									"type": ""
 								},
 								{

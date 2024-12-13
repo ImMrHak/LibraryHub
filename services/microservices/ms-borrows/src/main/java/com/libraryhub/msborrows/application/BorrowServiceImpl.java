@@ -105,7 +105,7 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public List<DataBorrowDTO> getBorrow(GetBorrowDTO getBorrowDTO) {
+    public List<DataBorrowDTO> getBorrows(GetBorrowDTO getBorrowDTO) {
         return borrowDomainService.findAll().stream().filter(b ->b.getIdUser().equals(getBorrowDTO.idUser())).map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
     }
 

@@ -33,4 +33,32 @@ public class ReservationDomainService {
         reservationDomainRepository.delete(dbReservation);
         return true;
     }
+
+    public List<Reservation> findAllByIdUser(String idUser){
+        return reservationDomainRepository.findAllByIdUser(idUser);
+    }
+
+    public List<Reservation> findAllByIsActive(Boolean isActive){
+        return reservationDomainRepository.findAllByIsActive(isActive);
+    }
+
+    public List<Reservation> findAllByIdUserAndIsActive(String idUser, Boolean isActive){
+        return reservationDomainRepository.findAllByIdUserAndIsActive(idUser, isActive);
+    }
+
+    public Boolean existsByIdReservation(Long idReservation){
+        return reservationDomainRepository.existsById(idReservation);
+    }
+
+    public Reservation findReservationByIdReservationAndIsActive(Long idReservation, Boolean isActive){
+        return reservationDomainRepository.findReservationByIdReservationAndIsActive(idReservation, isActive);
+    }
+
+    public Reservation findReservationByIdReservationAndIdUser(Long idReservation, String idUser){
+        return reservationDomainRepository.findReservationByIdReservationAndIdUser(idReservation, idUser);
+    }
+
+    public Reservation findReservationByIdReservationAndIdUserAndIsActive(Long idReservation, String idUser, Boolean isActive){
+        return findReservationByIdReservationAndIdUserAndIsActive(idReservation, idUser, isActive);
+    }
 }
