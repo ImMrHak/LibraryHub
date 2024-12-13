@@ -2,9 +2,7 @@ package com.libraryhub.msreservations.application.reservation.record.request;
 
 import jakarta.validation.constraints.NotNull;
 
-public record GetMyActiveReservation(
-        @NotNull
-        String idUser,
+public record GetReservationDTO(
         @NotNull
         Long idReservation
 ) {

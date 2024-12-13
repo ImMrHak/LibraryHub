@@ -105,21 +105,30 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public List<DataBorrowDTO> getBorrows(GetBorrowDTO getBorrowDTO) {
-        return borrowDomainService.findAll().stream().filter(b ->b.getIdUser().equals(getBorrowDTO.idUser())).map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
+    public List<DataBorrowDTO> getBorrows() {
+        return borrowDomainService.findAll().stream().map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
     }
 
     @Override
     public DataBorrowDTO getBorrowById(GetBorrowByIdDTO getBorrowByIdDTO) {
         if(!borrowDomainService.existsByIdBorrow(getBorrowByIdDTO.idBorrow())) return null;
-        Borrow dbBorrow = borrowDomainService.findBorrowById(getBorrowByIdDTO.idBorrow());
-        if(!dbBorrow.getIdUser().equals(getBorrowByIdDTO.idUser())) return null;
 
-        return borrowMapper.mapBorrowToDataBorrowDTO(dbBorrow);
+        return borrowMapper.mapBorrowToDataBorrowDTO(borrowDomainService.findBorrowById(getBorrowByIdDTO.idBorrow()));
+    }
+
+    @Override
+    public DataBorrowDTO getMyBorrowById(GetMyBorrowByIdDTO getMyBorrowByIdDTO) {
+        if(!borrowDomainService.existsByIdBorrow(getMyBorrowByIdDTO.idBorrow())) return null;
+        return borrowMapper.mapBorrowToDataBorrowDTO(borrowDomainService.findBorrowByIdBorrowAndIdUser(getMyBorrowByIdDTO.idBorrow(),getMyBorrowByIdDTO.idUser()));
     }
 
     @Override
     public DataBorrowDTO getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO) {
         return borrowMapper.mapBorrowToDataBorrowDTO(borrowDomainService.findFirstByIdBookOrderByReturnDate(getLatestBorrowByIdBookDTO.idBook()));
+    }
+
+    @Override
+    public List<DataBorrowDTO> getMyBorrows(GetMyBorrowsDTO getMyBorrowsDTO) {
+        return borrowDomainService.findBorrowsByIdUser(getMyBorrowsDTO.idUser()).stream().map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
     }
 }

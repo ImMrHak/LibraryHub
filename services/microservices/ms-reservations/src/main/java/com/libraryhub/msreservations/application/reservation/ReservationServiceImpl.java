@@ -103,8 +103,8 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<DataReservationDTO> getMyReservations(GetMyReservations getMyReservations) {
-        return reservationDomainService.findAllByIdUser(getMyReservations.idUser()).stream().map(reservationMapper::mapReservationToDataReservationDTO).collect(Collectors.toList());
+    public List<DataReservationDTO> getMyReservations(GetMyReservationsDTO getMyReservationsDTO) {
+        return reservationDomainService.findAllByIdUser(getMyReservationsDTO.idUser()).stream().map(reservationMapper::mapReservationToDataReservationDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -113,27 +113,27 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<DataReservationDTO> getMyActiveReservations(GetMyActiveReservations getMyActiveReservations) {
-        return reservationDomainService.findAllByIdUserAndIsActive(getMyActiveReservations.idUser(), true).stream().map(reservationMapper::mapReservationToDataReservationDTO).collect(Collectors.toList());
+    public List<DataReservationDTO> getMyActiveReservations(GetMyActiveReservationsDTO getMyActiveReservationsDTO) {
+        return reservationDomainService.findAllByIdUserAndIsActive(getMyActiveReservationsDTO.idUser(), true).stream().map(reservationMapper::mapReservationToDataReservationDTO).collect(Collectors.toList());
     }
 
     @Override
-    public DataReservationDTO getReservationById(GetReservation getReservation) {
-        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIsActive(getReservation.idReservation(), false));
+    public DataReservationDTO getReservationById(GetReservationDTO getReservationDTO) {
+        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIsActive(getReservationDTO.idReservation(), false));
     }
 
     @Override
-    public DataReservationDTO getMyReservationById(GetMyReservationUser getMyReservationUser) {
-        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIdUser(getMyReservationUser.idReservation(), getMyReservationUser.idUser()));
+    public DataReservationDTO getMyReservationById(GetMyReservationUserDTO getMyReservationUserDTO) {
+        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIdUser(getMyReservationUserDTO.idReservation(), getMyReservationUserDTO.idUser()));
     }
 
     @Override
-    public DataReservationDTO getActiveReservationById(GetActiveReservation getActiveReservation) {
-        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIsActive(getActiveReservation.idReservation(), true));
+    public DataReservationDTO getActiveReservationById(GetActiveReservationDTO getActiveReservationDTO) {
+        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIsActive(getActiveReservationDTO.idReservation(), true));
     }
 
     @Override
-    public DataReservationDTO getMyActiveReservationById(GetMyActiveReservation getMyActiveReservation) {
-        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIdUserAndIsActive(getMyActiveReservation.idReservation(), getMyActiveReservation.idUser(), true));
+    public DataReservationDTO getMyActiveReservationById(GetMyActiveReservationDTO getMyActiveReservationDTO) {
+        return reservationMapper.mapReservationToDataReservationDTO(reservationDomainService.findReservationByIdReservationAndIdUserAndIsActive(getMyActiveReservationDTO.idReservation(), getMyActiveReservationDTO.idUser(), true));
     }
 }

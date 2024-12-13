@@ -9,7 +9,10 @@ public interface BorrowService {
     Object createBorrow(CreateBorrowDTO createBorrowDTO);
     Object updateBorrow(UpdateBorrowDTO updateBorrowDTO);
     Object deleteBorrow(DeleteBorrowDTO deleteBorrowDTO);
-    List<DataBorrowDTO> getBorrows(GetBorrowDTO getBorrowDTO);
+    List<DataBorrowDTO> getBorrows();
     DataBorrowDTO getBorrowById(GetBorrowByIdDTO getBorrowByIdDTO);
+    DataBorrowDTO getMyBorrowById(GetMyBorrowByIdDTO getMyBorrowByIdDTO);
     DataBorrowDTO getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO);
+    List<DataBorrowDTO> getMyBorrows(GetMyBorrowsDTO  getMyBorrowsDTO);
+
 }

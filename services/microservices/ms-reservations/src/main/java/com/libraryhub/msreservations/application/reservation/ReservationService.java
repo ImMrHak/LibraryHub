@@ -9,11 +9,11 @@ public interface ReservationService {
     Object createReservation(CreateReservationDTO createReservationDTO);
     Object deleteReservation(DeleteReservationDTO deleteReservationDTO);
     List<DataReservationDTO> getReservations();
-    List<DataReservationDTO> getMyReservations(GetMyReservations getMyReservations);
+    List<DataReservationDTO> getMyReservations(GetMyReservationsDTO getMyReservationsDTO);
     List<DataReservationDTO> getActiveReservations();
-    List<DataReservationDTO> getMyActiveReservations(GetMyActiveReservations getMyActiveReservations);
-    DataReservationDTO getReservationById(GetReservation getReservation);
-    DataReservationDTO getMyReservationById(GetMyReservationUser getMyReservationUser);
-    DataReservationDTO getActiveReservationById(GetActiveReservation getActiveReservation);
-    DataReservationDTO getMyActiveReservationById(GetMyActiveReservation getMyActiveReservation);
+    List<DataReservationDTO> getMyActiveReservations(GetMyActiveReservationsDTO getMyActiveReservationsDTO);
+    DataReservationDTO getReservationById(GetReservationDTO getReservationDTO);
+    DataReservationDTO getMyReservationById(GetMyReservationUserDTO getMyReservationUserDTO);
+    DataReservationDTO getActiveReservationById(GetActiveReservationDTO getActiveReservationDTO);
+    DataReservationDTO getMyActiveReservationById(GetMyActiveReservationDTO getMyActiveReservationDTO);
 }

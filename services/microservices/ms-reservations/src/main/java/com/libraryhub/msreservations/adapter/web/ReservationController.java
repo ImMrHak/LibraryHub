@@ -2,9 +2,6 @@ package com.libraryhub.msreservations.adapter.web;
 
 import com.libraryhub.msreservations.application.reservation.ReservationService;
 import com.libraryhub.msreservations.application.reservation.record.request.*;
-import com.libraryhub.msreservations.infrastructure.booksOF.books.BooksExternalService;
-import com.libraryhub.msreservations.infrastructure.booksOF.themes.ThemesExternalService;
-import com.libraryhub.msreservations.infrastructure.usersOF.users.UsersExternalService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ReservationController {
     private final ReservationService reservationService;
-    private final BooksExternalService booksExternalService;
-    private final ThemesExternalService themesExternalService;
-    private final UsersExternalService usersExternalService;
 
     @GetMapping()
     public ResponseEntity<?> getReservations() {
@@ -29,7 +23,7 @@ public class ReservationController {
 
     @GetMapping("/myReservations/{idUser}")
     public ResponseEntity<?> getMyReservations(@PathVariable("idUser") String idUser) {
-        Object data = reservationService.getMyReservations(new GetMyReservations(idUser));
+        Object data = reservationService.getMyReservations(new GetMyReservationsDTO(idUser));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
@@ -43,35 +37,35 @@ public class ReservationController {
 
     @GetMapping("/myReservations/{idUser}/myActiveReservations")
     public ResponseEntity<?> getMyActiveReservations(@PathVariable("idUser") String idUser) {
-        Object data = reservationService.getMyActiveReservations(new GetMyActiveReservations(idUser));
+        Object data = reservationService.getMyActiveReservations(new GetMyActiveReservationsDTO(idUser));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @GetMapping("/{idReservation}")
     public ResponseEntity<?> getReservation(@PathVariable("idReservation") Long idReservation) {
-        Object data = reservationService.getReservationById(new GetReservation(idReservation));
+        Object data = reservationService.getReservationById(new GetReservationDTO(idReservation));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @GetMapping("/myReservation/{idUser}/{idReservation}")
     public ResponseEntity<?> getMyReservation(@PathVariable("idUser") String idUser, @PathVariable("idReservation") Long idReservation) {
-        Object data = reservationService.getMyReservationById(new GetMyReservationUser(idUser, idReservation));
+        Object data = reservationService.getMyReservationById(new GetMyReservationUserDTO(idUser, idReservation));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @GetMapping("/activeReservations/{idReservation}")
     public ResponseEntity<?> getActiveReservation(@PathVariable("idReservation") Long idReservation) {
-        Object data = reservationService.getActiveReservationById(new GetActiveReservation(idReservation));
+        Object data = reservationService.getActiveReservationById(new GetActiveReservationDTO(idReservation));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @GetMapping("/myReservations/{idUser}/myActiveReservation/{idReservation}")
     public ResponseEntity<?> getMyActiveReservation(@PathVariable("idUser") String idUser, @PathVariable("idReservation") Long idReservation) {
-        Object data = reservationService.getMyActiveReservationById(new GetMyActiveReservation(idUser, idReservation));
+        Object data = reservationService.getMyActiveReservationById(new GetMyActiveReservationDTO(idUser, idReservation));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }

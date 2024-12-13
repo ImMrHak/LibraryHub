@@ -10,4 +10,7 @@ import java.util.List;
 public interface BorrowDomainRepository extends JpaRepository<Borrow, Long> {
     Boolean existsByIdBorrow(Long id);
     Borrow findFirstByIdBookOrderByReturnDate(Long idBook);
+    List<Borrow> findAllByIdUser(String idUser);
+    List<Borrow> findBorrowsByIdUser(String idUser);
+    Borrow findBorrowByIdBorrowAndIdUser(Long idBorrow, String idUser);
 }

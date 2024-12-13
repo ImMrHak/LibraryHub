@@ -16,15 +16,23 @@ import org.springframework.web.bind.annotation.*;
 public class BorrowController {
     private final BorrowService borrowService;
 
-    @GetMapping("/{idUser}")
-    public ResponseEntity<?> getBorrows(@PathVariable("idUser") String idUser){
-        Object data = borrowService.getBorrows(new GetBorrowDTO(idUser));
+    @GetMapping()
+    public ResponseEntity<?> getBorrows() {
+        Object data = borrowService.getBorrows();
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+    @GetMapping("/myBorrows/{idUser}")
+    public ResponseEntity<?> getMyBorrows(@PathVariable("idUser") String idUser) {
+        Object data = borrowService.getMyBorrows(new GetMyBorrowsDTO(idUser));
+
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/{idUser}/{idBorrow}")
-    public ResponseEntity<?> getBorrowById(@PathVariable("idUser") String idUser, @PathVariable("idBorrow") Long idBorrow){
-        Object data = borrowService.getBorrowById(new GetBorrowByIdDTO(idBorrow,idUser));
+    @GetMapping("/myBorrow/{idUser}/{idBorrow}")
+    public ResponseEntity<?> getMyBorrow(@PathVariable("idUser") String idUser, @PathVariable("idBorrow") Long idBorrow) {
+        Object data = borrowService.getMyBorrowById(new GetMyBorrowByIdDTO(idBorrow,idUser));
+
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
@@ -33,6 +41,14 @@ public class BorrowController {
         Object data = borrowService.getLatestBorrowByIdBook(new GetLatestBorrowByIdBookDTO(idBook));
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
+
+    @GetMapping("/{idBorrow}")
+    public ResponseEntity<?> getBorrowById(@PathVariable("idBorrow") Long idBorrow) {
+        Object data = borrowService.getBorrowById(new GetBorrowByIdDTO(idBorrow));
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+
 
     @PostMapping("/create")
     public ResponseEntity<?> createBorrow(@Valid @RequestBody CreateBorrowDTO createBorrowDTO){
