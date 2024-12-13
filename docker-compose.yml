@@ -63,14 +63,14 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      KEYCLOAK_HTTP_PORT: 7070
+      KEYCLOAK_HTTP_PORT: 6491
     ports:
-      - "7070:7070"
+      - "6491:6491"
     networks:
       - microservices-net
     command:
       - "start-dev"
-      - "--http-port=7070"
+      - "--http-port=6491"
 
 
 networks:
