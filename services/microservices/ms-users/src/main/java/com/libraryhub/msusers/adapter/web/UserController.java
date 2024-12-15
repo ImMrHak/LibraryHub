@@ -1,5 +1,6 @@
 package com.libraryhub.msusers.adapter.web;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.libraryhub.msusers.application.user.UserService;
 import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
 import com.libraryhub.msusers.application.user.record.request.DeleteUserDTO;
@@ -7,8 +8,12 @@ import com.libraryhub.msusers.application.user.record.request.RecoverUserDTO;
 import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.bson.json.JsonObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,14 +23,19 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping()
-    ResponseEntity<?> getAllUsers() {
+    @GetMapping("/authenticatedUser")
+    public ResponseEntity<?> getAuthenticatedUser(Authentication authentication) {
+        return ResponseEntity.status(HttpStatus.OK).body(((Jwt) authentication.getPrincipal()).getSubject());
+    }
+
+    @GetMapping() @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getAllUsers() {
         Object data = userService.getUsers();
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @GetMapping("/{idUser}")
-    ResponseEntity<?> getUserById(@PathVariable("idUser") String idUser) {
+    public ResponseEntity<?> getUserById(@PathVariable("idUser") String idUser) {
         Object data = userService.getUserById(idUser);
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }

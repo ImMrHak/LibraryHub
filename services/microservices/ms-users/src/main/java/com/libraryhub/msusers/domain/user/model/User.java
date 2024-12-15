@@ -29,5 +29,4 @@ public class User {
     protected UserTypeEnum userType;
 
     protected Boolean isDeleted;
-
 }

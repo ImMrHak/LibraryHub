@@ -22,6 +22,7 @@ public class BorrowController {
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
+
     @GetMapping("/myBorrows/{idUser}")
     public ResponseEntity<?> getMyBorrows(@PathVariable("idUser") String idUser) {
         Object data = borrowService.getMyBorrows(new GetMyBorrowsDTO(idUser));
