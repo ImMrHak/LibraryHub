@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,49 +15,49 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
     private final BookService bookService;
 
-    @GetMapping()
-    public ResponseEntity<?> getAllBooks() {
+    @GetMapping() @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<?> getBooks() {
         Object data = bookService.getBooks();
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/available")
+    @GetMapping("/available") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getAvailableBooks() {
         Object data = bookService.getAvailableBooks();
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/unavailable")
+    @GetMapping("/unavailable") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getUnavailableBooks() {
         Object data = bookService.getUnavailableBooks();
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/{idBook}")
+    @GetMapping("/{idBook}") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<?> getBookById(@PathVariable("idBook") Long idBook) {
         Object data = bookService.getBookById(idBook);
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/deletedBooks")
+    @GetMapping("/deletedBooks") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getAllDeletedBooks() {
         Object data = bookService.getDeletedBooks();
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/deletedBooks/{idBook}")
+    @GetMapping("/deletedBooks/{idBook}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getDeletedBookById(@PathVariable("idBook") Long idBook) {
         Object data = bookService.getDeletedBookById(idBook);
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> createBook(@Valid @RequestBody CreateBookDTO createBookDTO) {
         Object data = bookService.createBook(createBookDTO);
 
@@ -65,7 +66,7 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> updateBook(@Valid @RequestBody UpdateBookDTO updateBookDTO) {
         Object data = bookService.updateBook(updateBookDTO);
 
@@ -74,6 +75,7 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    // MAYBE ERROR CONCERNING UPDATING THE BOOK AVAILABILITY USING ANOTHER MICROSERVICE (BORROWS/RESERVATIONS)
     @PutMapping("/update/availability")
     public ResponseEntity<?> updateBookAvailability(@Valid @RequestBody UpdateBookAvailabilityDTO updateBookAvailabilityDTO) {
         Object data = bookService.changeBookAvailability(updateBookAvailabilityDTO);
@@ -83,7 +85,7 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PutMapping("/update/addThemeToBook")
+    @PutMapping("/update/addThemeToBook") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> updateBookAddTheme(@Valid @RequestBody AddThemeToBookDTO addThemeToBookDTO) {
         Object data = bookService.addThemeToBook(addThemeToBookDTO);
 
@@ -92,7 +94,7 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PutMapping("/recover")
+    @PutMapping("/recover") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> recoverBook(@Valid @RequestBody RecoverBookDTO recoverBookDTO) {
         Object data = bookService.recoverBook(recoverBookDTO);
 
@@ -101,7 +103,7 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> deleteBook(@Valid @RequestBody DeleteBookDTO deleteBookDTO) {
         Object data = bookService.deleteBook(deleteBookDTO);
 
@@ -110,7 +112,7 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @DeleteMapping("/delete/deleteThemeFromBook")
+    @DeleteMapping("/delete/deleteThemeFromBook") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> deleteThemeFromBook(@Valid @RequestBody DeleteThemeFromBookDTO deleteThemeFromBookDTO) {
         Object data = bookService.deleteThemeFromBook(deleteThemeFromBookDTO);
 
