@@ -12,4 +12,7 @@ public record CreateBorrowDTO(
         @NotNull
         Long idBook
 ) {
+        public CreateBorrowDTO withIdUser(String newIdUser) {
+                return new CreateBorrowDTO(this.returnDate, newIdUser, this.idBook);
+        }
 }

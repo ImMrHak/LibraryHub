@@ -29,30 +29,31 @@ public class UserController {
     }
 
     @GetMapping() @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> getAllUsers() {
+    public ResponseEntity<?> getUsers() {
         Object data = userService.getUsers();
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/{idUser}")
+    @GetMapping("/{idUser}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getUserById(@PathVariable("idUser") String idUser) {
         Object data = userService.getUserById(idUser);
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/deleteUsers")
+    @GetMapping("/deleteUsers") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getAllDeleteUsers() {
         Object data = userService.getDeletedUsers();
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/deletedUsers/{idUser}")
+    @GetMapping("/deletedUsers/{idUser}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getDeletedUsersById(@PathVariable("idUser") String idUser) {
         Object data = userService.getDeletedUserById(idUser);
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PostMapping("/create")
+    //keycloak depandency need lot of work
+    @PostMapping("/create") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO){
         Object data = userService.createUser(createUserDTO);
 
@@ -61,7 +62,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserDTO updateUserDTO){
         Object data = userService.updateUser(updateUserDTO);
 
@@ -79,7 +80,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> deleteUser(@Valid @RequestBody DeleteUserDTO deleteUserDTO){
         Object data = userService.deleteUser(deleteUserDTO);
 

@@ -16,4 +16,8 @@ public record UpdateBorrowDTO(
         @NotNull
         Long idBook
 ) {
+        public UpdateBorrowDTO withIdUser(String newIdUser) {
+                return new UpdateBorrowDTO(this.idBorrow,this.returnDate, this.actualReturnDate,newIdUser, this.idBook);
+        }
+
 }

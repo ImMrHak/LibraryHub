@@ -8,6 +8,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,34 +19,35 @@ import org.springframework.web.bind.annotation.*;
 public class BorrowController {
     private final BorrowService borrowService;
 
-    @GetMapping()
+    @GetMapping() @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getBorrows() {
         Object data = borrowService.getBorrows();
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/myBorrows/{idUser}")
-    public ResponseEntity<?> getMyBorrows(@PathVariable("idUser") String idUser) {
-        Object data = borrowService.getMyBorrows(new GetMyBorrowsDTO(idUser));
+    @GetMapping("/myBorrows") @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<?> getMyBorrows(Authentication authentication) {
+        Object data = borrowService.getMyBorrows(new GetMyBorrowsDTO(((Jwt) authentication.getPrincipal()).getSubject()));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/myBorrow/{idUser}/{idBorrow}")
-    public ResponseEntity<?> getMyBorrow(@PathVariable("idUser") String idUser, @PathVariable("idBorrow") Long idBorrow) {
-        Object data = borrowService.getMyBorrowById(new GetMyBorrowByIdDTO(idBorrow,idUser));
+    @GetMapping("/myBorrow/{idBorrow}") @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<?> getMyBorrow(Authentication authentication, @PathVariable("idBorrow") Long idBorrow) {
+        Object data = borrowService.getMyBorrowById(new GetMyBorrowByIdDTO(idBorrow,((Jwt) authentication.getPrincipal()).getSubject()));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    // pay attention need work
     @GetMapping("/latestBorrowedBook/{idBook}")
     public ResponseEntity<?> getLatestBorrowByIdBook(@PathVariable("idBook") Long idBook){
         Object data = borrowService.getLatestBorrowByIdBook(new GetLatestBorrowByIdBookDTO(idBook));
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/{idBorrow}")
+    @GetMapping("/{idBorrow}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getBorrowById(@PathVariable("idBorrow") Long idBorrow) {
         Object data = borrowService.getBorrowById(new GetBorrowByIdDTO(idBorrow));
         return ResponseEntity.status(HttpStatus.OK).body(data);
@@ -51,25 +55,25 @@ public class BorrowController {
 
 
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createBorrow(@Valid @RequestBody CreateBorrowDTO createBorrowDTO){
-        Object data = borrowService.createBorrow(createBorrowDTO);
+    @PostMapping("/create") @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<?> createBorrow(Authentication authentication, @Valid @RequestBody CreateBorrowDTO createBorrowDTO){
+        Object data = borrowService.createBorrow(createBorrowDTO.withIdUser(((Jwt) authentication.getPrincipal()).getSubject()));
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(data);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> updateBorrow(@Valid @RequestBody UpdateBorrowDTO updateBorrowDTO){
-        Object data = borrowService.updateBorrow(updateBorrowDTO);
+    @PutMapping("/update") @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<?> updateBorrow(Authentication authentication,@Valid @RequestBody UpdateBorrowDTO updateBorrowDTO){
+        Object data = borrowService.updateBorrow(updateBorrowDTO.withIdUser(((Jwt) authentication.getPrincipal()).getSubject()));
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete") @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> deleteBorrow(@Valid @RequestBody DeleteBorrowDTO deleteBorrowDTO){
         Object data = borrowService.deleteBorrow(deleteBorrowDTO);
 
