@@ -52,6 +52,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+
     //keycloak depandency need lot of work
     @PostMapping("/create") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO){
