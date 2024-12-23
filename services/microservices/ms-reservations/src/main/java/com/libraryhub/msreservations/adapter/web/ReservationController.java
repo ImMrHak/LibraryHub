@@ -24,6 +24,13 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @GetMapping("/myReservations/count") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<?> getMyReservationsCount(Authentication authentication) {
+        Object data = reservationService.getMyReservationsCount(new GetMyReservationsDTO(((Jwt) authentication.getPrincipal()).getSubject()));
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
     @GetMapping("/myReservations") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<?> getMyReservations(Authentication authentication) {
         Object data = reservationService.getMyReservations(new GetMyReservationsDTO(((Jwt) authentication.getPrincipal()).getSubject()));

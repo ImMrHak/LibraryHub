@@ -11,6 +11,8 @@ public interface BookService {
     Object deleteBook(DeleteBookDTO deleteBookDTO);
     Object recoverBook(RecoverBookDTO recoverBookDTO);
     List<DataBookDTO> getBooks();
+    List<DataBookDTO> getBooksByTitle(String title);
+    Object getBooksWithPagination(Integer offset, Integer pageSize);
     List<DataBookDTO> getAvailableBooks();
     List<DataBookDTO> getUnavailableBooks();
     DataBookDTO getBookById(Long id);
@@ -19,4 +21,5 @@ public interface BookService {
     Object addThemeToBook(AddThemeToBookDTO addThemeToBookDTO);
     Object deleteThemeFromBook(DeleteThemeFromBookDTO deleteThemeFromBookDTO);
     Object changeBookAvailability(UpdateBookAvailabilityDTO updateBookAvailabilityDTO);
+    Object getBookByISBN(String isbn);
 }

@@ -11,11 +11,10 @@ import com.libraryhub.msbooks.domain.book.service.BookDomainService;
 import com.libraryhub.msbooks.domain.theme.model.Theme;
 import com.libraryhub.msbooks.domain.theme.service.ThemeDomainService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -113,6 +112,21 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<DataBookDTO> getBooksByTitle(String title) {
+        return bookDomainService.findAll().stream().filter(b -> b.getTitle().startsWith(title)).map(bookMapper::mapBookToDataBookDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public Object getBooksWithPagination(Integer offset, Integer pageSize) {
+        Page<Book> books = bookDomainService.findAllBooksWithPagination(offset, pageSize);
+        Map<String, Object> data = new HashMap<>();
+        data.put("totalPage", books.getTotalPages());
+        data.put("totalElements", books.getTotalElements());
+        data.put("books", books.stream().map(bookMapper::mapBookToDataBookDTO).collect(Collectors.toList()));
+        return data;
+    }
+
+    @Override
     public List<DataBookDTO> getAvailableBooks() {
         return bookDomainService.findAll().stream().filter(Book::getIsAvailable).map(bookMapper::mapBookToDataBookDTO).collect(Collectors.toList());
     }
@@ -190,5 +204,14 @@ public class BookServiceImpl implements BookService {
         dbBook.setIsAvailable(updateBookAvailabilityDTO.isAvailable());
 
         return bookMapper.mapBookToDataBookDTO(bookDomainService.saveBook(dbBook));
+    }
+
+    @Override
+    public Object getBookByISBN(String isbn) {
+        Book dbBook = bookDomainService.findBookByIsbn(isbn);
+
+        if(dbBook == null) return "Book does not exist";
+
+        return bookMapper.mapBookToDataBookDTO(dbBook);
     }
 }

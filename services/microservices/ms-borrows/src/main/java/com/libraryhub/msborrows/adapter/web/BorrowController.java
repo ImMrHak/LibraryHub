@@ -26,6 +26,20 @@ public class BorrowController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @GetMapping("/borrowedBook/{isbn}")
+    public ResponseEntity<?> getBorrowedBook(@PathVariable("isbn") String isbn) {
+        Object data = borrowService.existBorrowedBookByISBN(isbn);
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+    @GetMapping("/myBorrows/count") @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<?> getMyBorrowsCount(Authentication authentication) {
+        Object data = borrowService.getMyReservationsCount(new GetMyBorrowsDTO(((Jwt) authentication.getPrincipal()).getSubject()));
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
     @GetMapping("/myBorrows") @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> getMyBorrows(Authentication authentication) {
         Object data = borrowService.getMyBorrows(new GetMyBorrowsDTO(((Jwt) authentication.getPrincipal()).getSubject()));

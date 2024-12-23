@@ -19,6 +19,7 @@ public class Book {
     private String title;
     private String author;
     private String isbn;
+    private String imageUrl;
     private Integer publicationYear;
     private Boolean isAvailable;
     private Boolean isDeleted;

@@ -51,5 +51,13 @@ public class BorrowDomainService {
     public Borrow findBorrowByIdBorrowAndIdUser(Long idBorrow, String idUser){
         return borrowDomainRepository.findBorrowByIdBorrowAndIdUser(idBorrow,  idUser);
     }
+
+    public Integer countBorrowsByIdUser(String idUser){
+        return borrowDomainRepository.countBorrowsByIdUser(idUser);
+    }
+
+    public List<Borrow> findAllByIdBookOrderByReturnDateDesc(Long idBook){
+        return borrowDomainRepository.findAllByIdBookOrderByReturnDateDesc(idBook);
+    }
 }
 

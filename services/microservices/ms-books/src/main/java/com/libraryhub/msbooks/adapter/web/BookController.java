@@ -22,6 +22,29 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> getBookByTitle(@RequestParam(name = "title") String title) {
+        Object data = bookService.getBooksByTitle(title);
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+    @GetMapping("/{offset}/{pageSize}")
+    public ResponseEntity<?> getBooks(@PathVariable("offset") int offset, @PathVariable("pageSize") int pageSize) {
+        Object data = bookService.getBooksWithPagination(offset, pageSize);
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+    @GetMapping("/book/{isbn}")
+    public ResponseEntity<?> getBookByISBN(@PathVariable("isbn") String isbn) {
+        Object data = bookService.getBookByISBN(isbn);
+
+        if (data instanceof String) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(data);
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
     @GetMapping("/available") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> getAvailableBooks() {
         Object data = bookService.getAvailableBooks();

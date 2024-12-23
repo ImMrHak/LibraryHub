@@ -9,6 +9,7 @@ public record DataBookDTO(
         String title,
         String author,
         String isbn,
+        String imageUrl,
         Integer publicationYear,
         Boolean isAvailable,
         Set<DataThemeDTO> themes

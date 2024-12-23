@@ -82,6 +82,8 @@ public class UserServiceImpl implements UserService {
     public DataUserDTO getUserById(String id) {
         User dbUser = userDomainService.findUserById(id);
 
+        if(dbUser == null) return null;
+
         if(dbUser.getIsDeleted()) return null;
 
         return userMapper.userToDataUserDTO(dbUser);

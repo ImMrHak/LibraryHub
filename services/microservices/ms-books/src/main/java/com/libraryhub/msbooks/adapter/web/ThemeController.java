@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class ThemeController {
     private final ThemeService themeService;
 
-    @GetMapping() @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping() @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<?> getThemes() {
         return ResponseEntity.ok(themeService.getThemes());
     }

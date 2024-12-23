@@ -110,6 +110,24 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
+    public Boolean existBorrowedBookByISBN(String isbn) {
+        Object responseBookBody = booksExternalService.getBookByISBN(isbn).getBody();
+        DataBookDTO dataBookDTO = new ObjectMapper().convertValue(responseBookBody, DataBookDTO.class);
+        List<Borrow> borrowsWithISBN = borrowDomainService.findAllByIdBookOrderByReturnDateDesc(dataBookDTO.idBook());
+
+        for(Borrow borrow : borrowsWithISBN)  if(new Date(System.currentTimeMillis()).after(borrow.getReturnDate())) return true;
+
+        return false;
+    }
+
+    @Override
+    public Integer getMyReservationsCount(GetMyBorrowsDTO getMyBorrowsDTO) {
+        return borrowDomainService.countBorrowsByIdUser(getMyBorrowsDTO.idUser());
+    }
+
+
+
+    @Override
     public DataBorrowDTO getBorrowById(GetBorrowByIdDTO getBorrowByIdDTO) {
         if(!borrowDomainService.existsByIdBorrow(getBorrowByIdDTO.idBorrow())) return null;
 

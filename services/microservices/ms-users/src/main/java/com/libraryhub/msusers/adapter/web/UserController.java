@@ -6,6 +6,8 @@ import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
 import com.libraryhub.msusers.application.user.record.request.DeleteUserDTO;
 import com.libraryhub.msusers.application.user.record.request.RecoverUserDTO;
 import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
+import com.libraryhub.msusers.application.user.record.response.DataUserDTO;
+import com.libraryhub.msusers.domain.user.enumeration.UserTypeEnum;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.bson.json.JsonObject;
@@ -23,9 +25,25 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/authenticatedUser")
-    public ResponseEntity<?> getAuthenticatedUser(Authentication authentication) {
-        return ResponseEntity.status(HttpStatus.OK).body(((Jwt) authentication.getPrincipal()).getSubject());
+    @GetMapping("/myTotalDashboardInformation")
+    public ResponseEntity<?> getMyTotalDashboardInformation(Authentication authentication) {
+        return null;
+    }
+
+    @GetMapping("/accountExist") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<?> getUserAccountExist(Authentication authentication) {
+        Object data = userService.getUserById(((Jwt) authentication.getPrincipal()).getClaims().get("sub").toString());
+
+        return ResponseEntity.status(HttpStatus.OK).body(data != null);
+    }
+
+    @PostMapping("/createUserFromKeyCloak") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<?> createKeyCloakUser(Authentication authentication, @Valid @RequestBody CreateUserDTO createUserDTO) {
+        CreateUserDTO actualTokenData = new CreateUserDTO(((Jwt) authentication.getPrincipal()).getClaims().get("sub").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("preferred_username").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("email").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("given_name").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("family_name").toString(), createUserDTO.userType());
+
+        if(!actualTokenData.equals(createUserDTO)) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Naughty Naughty Naughty");
+
+        return ResponseEntity.status(HttpStatus.OK).body(userService.createUser(actualTokenData));
     }
 
     @GetMapping() @PreAuthorize("hasRole('ADMIN')")

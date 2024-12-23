@@ -10,6 +10,7 @@ public interface ReservationService {
     Object deleteReservation(DeleteReservationDTO deleteReservationDTO);
     List<DataReservationDTO> getReservations();
     List<DataReservationDTO> getMyReservations(GetMyReservationsDTO getMyReservationsDTO);
+    Integer getMyReservationsCount(GetMyReservationsDTO getMyReservationsDTO);
     List<DataReservationDTO> getActiveReservations();
     List<DataReservationDTO> getMyActiveReservations(GetMyActiveReservationsDTO getMyActiveReservationsDTO);
     DataReservationDTO getReservationById(GetReservationDTO getReservationDTO);

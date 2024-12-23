@@ -1,6 +1,7 @@
 package com.libraryhub.msborrows.infrastructure.usersOF.users;
 
 
+import com.libraryhub.msborrows.infrastructure.FeignClientConfig.FeignClientConfig;
 import com.libraryhub.msborrows.infrastructure.usersOF.users.record.request.CreateUserDTO;
 import com.libraryhub.msborrows.infrastructure.usersOF.users.record.request.DeleteUserDTO;
 import com.libraryhub.msborrows.infrastructure.usersOF.users.record.request.RecoverUserDTO;
@@ -9,7 +10,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "MS-USERS", url = "${application.config.ms-users}")
+@FeignClient(name = "MS-USERS", url = "${application.config.ms-users}", configuration = FeignClientConfig.class)
 public interface UsersExternalService {
 
     @GetMapping

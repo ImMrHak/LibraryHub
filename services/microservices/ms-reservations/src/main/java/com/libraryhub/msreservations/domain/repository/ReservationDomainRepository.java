@@ -15,4 +15,5 @@ public interface ReservationDomainRepository extends JpaRepository<Reservation, 
     Reservation findReservationByIdReservationAndIsActive(Long idReservation, Boolean isActive);
     Reservation findReservationByIdReservationAndIdUser(Long idReservation, String idUser);
     Reservation findReservationByIdReservationAndIdUserAndIsActive(Long idReservation, String idUser, Boolean isActive);
+    Integer countAllByIdUser(String idUser);
 }

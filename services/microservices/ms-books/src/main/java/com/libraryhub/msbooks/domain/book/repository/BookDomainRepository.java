@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BookDomainRepository extends JpaRepository<Book, Long> {
     Boolean existsBookByTitle(String title);
     Boolean existsByIdBook(Long idBook);
+
+    Book findBookByIsbn(String isbn);
 }
