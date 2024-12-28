@@ -2,10 +2,7 @@ package com.libraryhub.msusers.adapter.web;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.libraryhub.msusers.application.user.UserService;
-import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
-import com.libraryhub.msusers.application.user.record.request.DeleteUserDTO;
-import com.libraryhub.msusers.application.user.record.request.RecoverUserDTO;
-import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
+import com.libraryhub.msusers.application.user.record.request.*;
 import com.libraryhub.msusers.application.user.record.response.DataUserDTO;
 import com.libraryhub.msusers.domain.user.enumeration.UserTypeEnum;
 import jakarta.validation.Valid;
@@ -38,10 +35,8 @@ public class UserController {
     }
 
     @PostMapping("/createUserFromKeyCloak") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<?> createKeyCloakUser(Authentication authentication, @Valid @RequestBody CreateUserDTO createUserDTO) {
-        CreateUserDTO actualTokenData = new CreateUserDTO(((Jwt) authentication.getPrincipal()).getClaims().get("sub").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("preferred_username").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("email").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("given_name").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("family_name").toString(), createUserDTO.userType());
-
-        if(!actualTokenData.equals(createUserDTO)) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Naughty Naughty Naughty");
+    public ResponseEntity<?> createKeyCloakUser(Authentication authentication, @Valid @RequestBody CreateKeyCloakUserDTO createKeyCloakUserDTO) {
+        CreateUserDTO actualTokenData = new CreateUserDTO(((Jwt) authentication.getPrincipal()).getClaims().get("sub").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("preferred_username").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("email").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("given_name").toString(), ((Jwt) authentication.getPrincipal()).getClaims().get("family_name").toString(), createKeyCloakUserDTO.userType());
 
         return ResponseEntity.status(HttpStatus.OK).body(userService.createUser(actualTokenData));
     }
