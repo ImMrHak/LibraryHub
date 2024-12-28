@@ -62,7 +62,7 @@ public class ReservationDomainService {
         return findReservationByIdReservationAndIdUserAndIsActive(idReservation, idUser, isActive);
     }
 
-    public Integer countAllByIdUser(String idUser){
-        return  reservationDomainRepository.countAllByIdUser(idUser);
+    public Integer countAllByIdUser(String idUser, Boolean isActive){
+        return  reservationDomainRepository.countAllByIdUserAndIsActive(idUser, isActive);
     }
 }

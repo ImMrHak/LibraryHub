@@ -35,10 +35,18 @@ public class BorrowController {
 
     @GetMapping("/myBorrows/count") @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> getMyBorrowsCount(Authentication authentication) {
-        Object data = borrowService.getMyReservationsCount(new GetMyBorrowsDTO(((Jwt) authentication.getPrincipal()).getSubject()));
+        Object data = borrowService.getMyBorrowsCount(new GetMyBorrowsDTO(((Jwt) authentication.getPrincipal()).getSubject()));
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
+
+    @GetMapping("/myReturnedBorrows/count") @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<?> getMyReturnedBorrowsCount(Authentication authentication) {
+        Object data = borrowService.getMyReturnedBorrowsCount(new GetMyBorrowsDTO(((Jwt) authentication.getPrincipal()).getSubject()));
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
 
     @GetMapping("/myBorrows") @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<?> getMyBorrows(Authentication authentication) {

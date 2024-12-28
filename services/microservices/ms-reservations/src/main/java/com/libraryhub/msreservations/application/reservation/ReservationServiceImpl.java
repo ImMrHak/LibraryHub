@@ -109,7 +109,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Integer getMyReservationsCount(GetMyReservationsDTO getMyReservationsDTO) {
-        return reservationDomainService.countAllByIdUser(getMyReservationsDTO.idUser());
+        return reservationDomainService.countAllByIdUser(getMyReservationsDTO.idUser(),true);
     }
 
     @Override

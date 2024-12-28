@@ -24,7 +24,9 @@ public class UserController {
 
     @GetMapping("/myTotalDashboardInformation")
     public ResponseEntity<?> getMyTotalDashboardInformation(Authentication authentication) {
-        return null;
+        Object data = userService.getMyTotalDashboardInformation(((Jwt) authentication.getPrincipal()).getClaims().get("sub").toString());
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @GetMapping("/accountExist") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
@@ -47,7 +49,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/{idUser}") @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/{idUser}") @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<?> getUserById(@PathVariable("idUser") String idUser) {
         Object data = userService.getUserById(idUser);
         return ResponseEntity.status(HttpStatus.OK).body(data);
@@ -103,6 +105,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @GetMapping("/myDashboardData")
+    public ResponseEntity<?> myDashboardData(){
+
+        return null;
+    }
 }
 
 

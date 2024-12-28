@@ -16,4 +16,5 @@ public interface BorrowDomainRepository extends JpaRepository<Borrow, Long> {
     Borrow findBorrowByIdBorrowAndIdUser(Long idBorrow, String idUser);
     Integer countBorrowsByIdUser(String idUser);
     List<Borrow> findAllByIdBookOrderByReturnDateDesc(Long idBook);
+    Integer countBorrowByIdUserAndActualReturnDateIsNotNull(String idUser);
 }

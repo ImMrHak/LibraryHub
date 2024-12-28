@@ -59,5 +59,9 @@ public class BorrowDomainService {
     public List<Borrow> findAllByIdBookOrderByReturnDateDesc(Long idBook){
         return borrowDomainRepository.findAllByIdBookOrderByReturnDateDesc(idBook);
     }
+
+    public Integer countBorrowByIdUserAndActualReturnDateIsNotNull(String idUser){
+        return borrowDomainRepository.countBorrowByIdUserAndActualReturnDateIsNotNull(idUser);
+    }
 }
 

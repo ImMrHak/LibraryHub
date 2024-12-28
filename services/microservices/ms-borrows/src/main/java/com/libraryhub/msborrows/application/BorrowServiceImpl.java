@@ -121,10 +121,15 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public Integer getMyReservationsCount(GetMyBorrowsDTO getMyBorrowsDTO) {
+    public Integer getMyBorrowsCount(GetMyBorrowsDTO getMyBorrowsDTO) {
         return borrowDomainService.countBorrowsByIdUser(getMyBorrowsDTO.idUser());
     }
 
+    @Override
+    public Integer getMyReturnedBorrowsCount(GetMyBorrowsDTO getMyBorrowsDTO) {
+
+        return borrowDomainService.countBorrowByIdUserAndActualReturnDateIsNotNull(getMyBorrowsDTO.idUser());
+    }
 
 
     @Override

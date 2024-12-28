@@ -11,7 +11,8 @@ public interface BorrowService {
     Object deleteBorrow(DeleteBorrowDTO deleteBorrowDTO);
     List<DataBorrowDTO> getBorrows();
     Boolean existBorrowedBookByISBN(String isbn);
-    Integer getMyReservationsCount(GetMyBorrowsDTO getMyBorrowsDTO);
+    Integer getMyBorrowsCount(GetMyBorrowsDTO getMyBorrowsDTO);
+    Integer getMyReturnedBorrowsCount(GetMyBorrowsDTO getMyBorrowsDTO);
     DataBorrowDTO getBorrowById(GetBorrowByIdDTO getBorrowByIdDTO);
     DataBorrowDTO getMyBorrowById(GetMyBorrowByIdDTO getMyBorrowByIdDTO);
     DataBorrowDTO getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO);
