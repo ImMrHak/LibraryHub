@@ -5,6 +5,7 @@ import com.libraryhub.msborrows.domain.repository.BorrowDomainRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -62,6 +63,9 @@ public class BorrowDomainService {
 
     public Integer countBorrowByIdUserAndActualReturnDateIsNotNull(String idUser){
         return borrowDomainRepository.countBorrowByIdUserAndActualReturnDateIsNotNull(idUser);
+    }
+    public  List<Borrow> findAllByIdUserOrderByActualReturnDateDesc(String idUser){
+        return borrowDomainRepository.findAllByIdUserAndActualReturnDateNotNullOrderByActualReturnDateDesc(idUser);
     }
 }
 

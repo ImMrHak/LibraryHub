@@ -75,6 +75,13 @@ public class BorrowController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @GetMapping("/recentReturnedBorrows") @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<?> recentReturnedBorrows(Authentication authentication) {
+        Object data = borrowService.recentReturnedBorrows((new RecentReturnedBooksDTO(((Jwt) authentication.getPrincipal()).getSubject())));
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
 
 
     @PostMapping("/create") @PreAuthorize("hasAnyRole('USER','ADMIN')")

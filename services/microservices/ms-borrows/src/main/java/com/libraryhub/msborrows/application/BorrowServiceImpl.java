@@ -154,4 +154,9 @@ public class BorrowServiceImpl implements BorrowService {
     public List<DataBorrowDTO> getMyBorrows(GetMyBorrowsDTO getMyBorrowsDTO) {
         return borrowDomainService.findBorrowsByIdUser(getMyBorrowsDTO.idUser()).stream().map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<DataBorrowDTO> recentReturnedBorrows(RecentReturnedBooksDTO recentReturnedBooksDTO) {
+        return borrowDomainService.findAllByIdUserOrderByActualReturnDateDesc(recentReturnedBooksDTO.idUser()).stream().map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
+    }
 }

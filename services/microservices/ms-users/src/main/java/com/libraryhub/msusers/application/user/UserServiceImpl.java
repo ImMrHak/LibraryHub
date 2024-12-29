@@ -1,5 +1,6 @@
 package com.libraryhub.msusers.application.user;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.libraryhub.msusers.application.user.mapper.UserMapper;
 import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
@@ -9,15 +10,15 @@ import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
 import com.libraryhub.msusers.application.user.record.response.DataUserDTO;
 import com.libraryhub.msusers.domain.user.model.User;
 import com.libraryhub.msusers.domain.user.service.UserDomainService;
+import com.libraryhub.msusers.infrastructure.bookOF.books.BooksExternalService;
+import com.libraryhub.msusers.infrastructure.bookOF.books.record.response.DataBookDTO;
 import com.libraryhub.msusers.infrastructure.borrowOF.borrows.BorrowExternalService;
+import com.libraryhub.msusers.infrastructure.borrowOF.borrows.record.response.DataBorrowDTO;
 import com.libraryhub.msusers.infrastructure.reservationOF.reservations.ReservationExternalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
     private final BorrowExternalService borrowExternalService;
     private final ReservationExternalService reservationExternalService;
+    private final BooksExternalService booksExternalService;
 
     @Override
     public Object createUser(CreateUserDTO createUserDto) {
@@ -115,26 +117,38 @@ public class UserServiceImpl implements UserService {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // Directly convert the response to Integer
-        Object responseBorrowCountBody = borrowExternalService.getMyBorrowsCount().getBody();
-        Integer borrowsCount = objectMapper.convertValue(responseBorrowCountBody, Integer.class);
+        // Convert the response to Integer
+        Integer borrowsCount = objectMapper.convertValue(
+                borrowExternalService.getMyBorrowsCount().getBody(), Integer.class);
 
-        Object responseReservationCountBody = reservationExternalService.getMyReservationsCount().getBody();
-        Integer reservationsCount = objectMapper.convertValue(responseReservationCountBody, Integer.class);
+        Integer reservationsCount = objectMapper.convertValue(
+                reservationExternalService.getMyReservationsCount().getBody(), Integer.class);
 
-        Object responseReturnedBorrowsCount = borrowExternalService.getMyReturnedBorrowsCount().getBody();
-        Integer returnedBorrowsCount = objectMapper.convertValue(responseReturnedBorrowsCount, Integer.class);
+        Integer returnedBorrowsCount = objectMapper.convertValue(
+                borrowExternalService.getMyReturnedBorrowsCount().getBody(), Integer.class);
 
-        System.out.println("Borrow Count: " + borrowsCount);
-        System.out.println("Reservation Count: " + reservationsCount);
-        System.out.println("Returned Borrows Count: " + returnedBorrowsCount);
+        // Specify the type for recentReturnedBorrows
+        Object responseRecentBorrows = borrowExternalService.recentReturnedBorrows().getBody();
+        List<DataBorrowDTO> recentReturnedBorrows = objectMapper.convertValue(
+                responseRecentBorrows, new TypeReference<List<DataBorrowDTO>>() {});
 
-        Map<String,Object> results = new HashMap<>();
-        results.put("borrowsCount" ,borrowsCount);
-        results.put("reservationsCount" ,reservationsCount);
-        results.put("returnedBorrowsCount" ,returnedBorrowsCount);
+        List<DataBookDTO> recentReturnedBooks = new ArrayList<>();
+
+        for (DataBorrowDTO borrow : recentReturnedBorrows) {
+            Object responseDataBookDTO = booksExternalService.getBookById(borrow.idBook()).getBody();
+            DataBookDTO dataBookDTO = objectMapper.convertValue(responseDataBookDTO, DataBookDTO.class);
+
+            recentReturnedBooks.add(dataBookDTO);
+        }
+
+        Map<String, Object> results = new HashMap<>();
+        results.put("borrowsCount", borrowsCount);
+        results.put("reservationsCount", reservationsCount);
+        results.put("returnedBorrowsCount", returnedBorrowsCount);
+        results.put("recentReturnedBooks", recentReturnedBooks);
 
         return results;
     }
+
 
 }

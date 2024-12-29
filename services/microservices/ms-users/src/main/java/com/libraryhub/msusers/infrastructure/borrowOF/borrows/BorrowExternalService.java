@@ -5,8 +5,11 @@ import com.libraryhub.msusers.infrastructure.borrowOF.borrows.record.request.Cre
 import com.libraryhub.msusers.infrastructure.borrowOF.borrows.record.request.DeleteBorrowDTO;
 import com.libraryhub.msusers.infrastructure.borrowOF.borrows.record.request.UpdateBorrowDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "MS-BORROW", url = "${application.config.ms-borrows}", configuration = FeignClientConfig.class)
@@ -34,6 +37,10 @@ public interface BorrowExternalService {
 
     @GetMapping("/{idBorrow}")
     ResponseEntity<?> getBorrowById(@PathVariable("idBorrow") Long idBorrow);
+
+    @GetMapping("/recentReturnedBorrows")
+    ResponseEntity<?> recentReturnedBorrows();
+
 
     @PostMapping("/create")
     ResponseEntity<?> createBorrow(@RequestBody CreateBorrowDTO createBorrowDTO);

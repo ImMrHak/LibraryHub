@@ -105,11 +105,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
-    @GetMapping("/myDashboardData")
-    public ResponseEntity<?> myDashboardData(){
-
-        return null;
-    }
 }
 
 

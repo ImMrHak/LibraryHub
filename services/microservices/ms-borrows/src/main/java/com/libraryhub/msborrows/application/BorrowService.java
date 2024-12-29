@@ -17,5 +17,5 @@ public interface BorrowService {
     DataBorrowDTO getMyBorrowById(GetMyBorrowByIdDTO getMyBorrowByIdDTO);
     DataBorrowDTO getLatestBorrowByIdBook(GetLatestBorrowByIdBookDTO getLatestBorrowByIdBookDTO);
     List<DataBorrowDTO> getMyBorrows(GetMyBorrowsDTO  getMyBorrowsDTO);
-
+    List<DataBorrowDTO> recentReturnedBorrows(RecentReturnedBooksDTO recentReturnedBooksDTO);
 }
