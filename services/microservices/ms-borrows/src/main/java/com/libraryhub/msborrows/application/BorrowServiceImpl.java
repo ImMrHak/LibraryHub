@@ -2,16 +2,16 @@ package com.libraryhub.msborrows.application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.libraryhub.msborrows.application.mapper.BorrowMapper;
-import com.libraryhub.msborrows.application.record.request.*;
-import com.libraryhub.msborrows.application.record.response.DataBorrowDTO;
 import com.libraryhub.msborrows.domain.model.Borrow;
 import com.libraryhub.msborrows.domain.service.BorrowDomainService;
-import com.libraryhub.msborrows.infrastructure.booksOF.books.BooksExternalService;
-import com.libraryhub.msborrows.infrastructure.booksOF.books.record.request.UpdateBookAvailabilityDTO;
-import com.libraryhub.msborrows.infrastructure.booksOF.books.record.response.DataBookDTO;
-import com.libraryhub.msborrows.infrastructure.booksOF.themes.ThemesExternalService;
-import com.libraryhub.msborrows.infrastructure.usersOF.users.UsersExternalService;
-import com.libraryhub.msborrows.infrastructure.usersOF.users.record.response.DataUserDTO;
+import com.libraryhub.msborrows.infrastructure.FeignClients.microservices.bookOF.books.BooksExternalService;
+import com.libraryhub.msborrows.infrastructure.FeignClients.microservices.bookOF.themes.ThemesExternalService;
+import com.libraryhub.msborrows.infrastructure.FeignClients.microservices.usersOF.users.UsersExternalService;
+import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.request.UpdateBookAvailabilityDTO;
+import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.response.DataBookDTO;
+import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.request.*;
+import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.response.DataBorrowDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.response.DataUserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

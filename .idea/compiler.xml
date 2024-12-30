@@ -15,14 +15,25 @@
         <module name="ms-books" />
         <module name="ms-users" />
       </profile>
+      <profile name="Annotation profile for SharedData" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="SharedData" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="config-server (1)" target="17" />
       <module name="discovery-server (1)" target="17" />
+      <module name="LibraryHubSharedasdasdas" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SharedData" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="config-server (1)" options="-parameters" />
       <module name="discovery-server" options="-parameters" />

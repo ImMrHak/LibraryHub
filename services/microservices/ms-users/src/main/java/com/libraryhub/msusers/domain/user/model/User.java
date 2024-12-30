@@ -1,7 +1,6 @@
 package com.libraryhub.msusers.domain.user.model;
 
-
-import com.libraryhub.msusers.domain.user.enumeration.UserTypeEnum;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.enumeration.UserTypeEnum;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,7 +1,7 @@
 package com.libraryhub.msborrows.application;
 
-import com.libraryhub.msborrows.application.record.request.*;
-import com.libraryhub.msborrows.application.record.response.DataBorrowDTO;
+import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.request.*;
+import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.response.DataBorrowDTO;
 
 import java.util.List;
 

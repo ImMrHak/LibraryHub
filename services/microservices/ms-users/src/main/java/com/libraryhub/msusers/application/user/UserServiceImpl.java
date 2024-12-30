@@ -3,18 +3,18 @@ package com.libraryhub.msusers.application.user;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.libraryhub.msusers.application.user.mapper.UserMapper;
-import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
-import com.libraryhub.msusers.application.user.record.request.DeleteUserDTO;
-import com.libraryhub.msusers.application.user.record.request.RecoverUserDTO;
-import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
-import com.libraryhub.msusers.application.user.record.response.DataUserDTO;
 import com.libraryhub.msusers.domain.user.model.User;
 import com.libraryhub.msusers.domain.user.service.UserDomainService;
-import com.libraryhub.msusers.infrastructure.bookOF.books.BooksExternalService;
-import com.libraryhub.msusers.infrastructure.bookOF.books.record.response.DataBookDTO;
-import com.libraryhub.msusers.infrastructure.borrowOF.borrows.BorrowExternalService;
-import com.libraryhub.msusers.infrastructure.borrowOF.borrows.record.response.DataBorrowDTO;
-import com.libraryhub.msusers.infrastructure.reservationOF.reservations.ReservationExternalService;
+import com.libraryhub.msusers.infrastructure.FeignClients.microservices.bookOF.books.BooksExternalService;
+import com.libraryhub.msusers.infrastructure.FeignClients.microservices.borrowOF.borrows.BorrowsExternalService;
+import com.libraryhub.msusers.infrastructure.FeignClients.microservices.reservationOF.reservations.ReservationExternalService;
+import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.response.DataBookDTO;
+import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.response.DataBorrowDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.CreateUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.DeleteUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.RecoverUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.UpdateUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.response.DataUserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     private final UserDomainService userDomainService;
     private final UserMapper userMapper;
 
-    private final BorrowExternalService borrowExternalService;
+    private final BorrowsExternalService borrowsExternalService;
     private final ReservationExternalService reservationExternalService;
     private final BooksExternalService booksExternalService;
 
@@ -119,16 +119,16 @@ public class UserServiceImpl implements UserService {
 
         // Convert the response to Integer
         Integer borrowsCount = objectMapper.convertValue(
-                borrowExternalService.getMyBorrowsCount().getBody(), Integer.class);
+                borrowsExternalService.getMyBorrowsCount().getBody(), Integer.class);
 
         Integer reservationsCount = objectMapper.convertValue(
                 reservationExternalService.getMyReservationsCount().getBody(), Integer.class);
 
         Integer returnedBorrowsCount = objectMapper.convertValue(
-                borrowExternalService.getMyReturnedBorrowsCount().getBody(), Integer.class);
+                borrowsExternalService.getMyReturnedBorrowsCount().getBody(), Integer.class);
 
         // Specify the type for recentReturnedBorrows
-        Object responseRecentBorrows = borrowExternalService.recentReturnedBorrows().getBody();
+        Object responseRecentBorrows = borrowsExternalService.recentReturnedBorrows().getBody();
         List<DataBorrowDTO> recentReturnedBorrows = objectMapper.convertValue(
                 responseRecentBorrows, new TypeReference<List<DataBorrowDTO>>() {});
 

@@ -1,7 +1,7 @@
 package com.libraryhub.msreservations.application.reservation;
 
-import com.libraryhub.msreservations.application.reservation.record.request.*;
-import com.libraryhub.msreservations.application.reservation.record.response.DataReservationDTO;
+import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.request.*;
+import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.response.DataReservationDTO;
 
 import java.util.List;
 

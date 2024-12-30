@@ -1,7 +1,7 @@
 package com.libraryhub.msreservations.adapter.web;
 
 import com.libraryhub.msreservations.application.reservation.ReservationService;
-import com.libraryhub.msreservations.application.reservation.record.request.*;
+import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.request.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

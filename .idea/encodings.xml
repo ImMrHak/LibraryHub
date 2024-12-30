@@ -7,8 +7,11 @@
     <file url="file://$PROJECT_DIR$/services/infrastructure/discovery-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/infrastructure/gateway-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/microservices/ms-books/src/main/java" charset="UTF-8" />
-      <file url="file://$PROJECT_DIR$/services/microservices/ms-borrows/src/main/java" charset="UTF-8" />
-      <file url="file://$PROJECT_DIR$/services/microservices/ms-reservations/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/microservices/ms-borrows/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/microservices/ms-reservations/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/microservices/ms-users/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/microservices/shared/LibraryHubSharedsdsa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/microservices/shared/LibraryHubSharedsdsa/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/microservices/shared/SharedData/src/main/java" charset="UTF-8" />
   </component>
 </project>

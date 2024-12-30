@@ -1,9 +1,7 @@
 package com.libraryhub.msborrows.adapter.web;
 
 import com.libraryhub.msborrows.application.BorrowService;
-import com.libraryhub.msborrows.application.record.request.*;
-import com.libraryhub.msborrows.infrastructure.booksOF.books.BooksExternalService;
-import com.libraryhub.msborrows.infrastructure.usersOF.users.UsersExternalService;
+import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.request.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,13 +1,9 @@
 package com.libraryhub.msusers.adapter.web;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.libraryhub.msusers.application.user.UserService;
-import com.libraryhub.msusers.application.user.record.request.*;
-import com.libraryhub.msusers.application.user.record.response.DataUserDTO;
-import com.libraryhub.msusers.domain.user.enumeration.UserTypeEnum;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.bson.json.JsonObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

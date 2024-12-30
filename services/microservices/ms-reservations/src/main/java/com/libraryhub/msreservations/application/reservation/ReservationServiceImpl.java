@@ -2,18 +2,18 @@ package com.libraryhub.msreservations.application.reservation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.libraryhub.msreservations.application.reservation.mapper.ReservationMapper;
-import com.libraryhub.msreservations.application.reservation.record.request.*;
-import com.libraryhub.msreservations.application.reservation.record.response.DataReservationDTO;
 import com.libraryhub.msreservations.domain.model.Reservation;
 import com.libraryhub.msreservations.domain.service.ReservationDomainService;
-import com.libraryhub.msreservations.infrastructure.booksOF.books.BooksExternalService;
-import com.libraryhub.msreservations.infrastructure.booksOF.books.record.request.UpdateBookAvailabilityDTO;
-import com.libraryhub.msreservations.infrastructure.booksOF.books.record.response.DataBookDTO;
-import com.libraryhub.msreservations.infrastructure.booksOF.themes.ThemesExternalService;
-import com.libraryhub.msreservations.infrastructure.borrowsOF.borrows.BorrowsExternalService;
-import com.libraryhub.msreservations.infrastructure.borrowsOF.borrows.record.response.DataBorrowDTO;
-import com.libraryhub.msreservations.infrastructure.usersOF.users.UsersExternalService;
-import com.libraryhub.msreservations.infrastructure.usersOF.users.record.response.DataUserDTO;
+import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.bookOF.books.BooksExternalService;
+import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.bookOF.themes.ThemesExternalService;
+import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.borrowOF.borrows.BorrowsExternalService;
+import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.usersOF.users.UsersExternalService;
+import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.request.UpdateBookAvailabilityDTO;
+import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.response.DataBookDTO;
+import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.response.DataBorrowDTO;
+import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.request.*;
+import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.response.DataReservationDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.response.DataUserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

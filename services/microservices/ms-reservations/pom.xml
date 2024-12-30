@@ -104,6 +104,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
+
+
+        <!-- CUSTOM DEPENDENCY -->
+        <dependency>
+            <groupId>com.libraryhub</groupId>
+            <artifactId>SharedData</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

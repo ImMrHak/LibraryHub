@@ -1,10 +1,10 @@
 package com.libraryhub.msusers.application.user;
 
-import com.libraryhub.msusers.application.user.record.request.DeleteUserDTO;
-import com.libraryhub.msusers.application.user.record.request.RecoverUserDTO;
-import com.libraryhub.msusers.application.user.record.request.UpdateUserDTO;
-import com.libraryhub.msusers.application.user.record.request.CreateUserDTO;
-import com.libraryhub.msusers.application.user.record.response.DataUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.CreateUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.DeleteUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.RecoverUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.request.UpdateUserDTO;
+import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.response.DataUserDTO;
 
 import java.util.List;
 
