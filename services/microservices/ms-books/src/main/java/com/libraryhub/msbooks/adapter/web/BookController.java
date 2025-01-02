@@ -2,6 +2,7 @@ package com.libraryhub.msbooks.adapter.web;
 
 import com.libraryhub.msbooks.application.book.BookService;
 import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.request.*;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,10 +31,17 @@ public class BookController {
     }
 
     @GetMapping("/{offset}/{pageSize}")
+    @CircuitBreaker(name = "BooksServiceCB", fallbackMethod = "getDefaultBooks")
     public ResponseEntity<?> getBooks(@PathVariable("offset") int offset, @PathVariable("pageSize") int pageSize) {
         Object data = bookService.getBooksWithPagination(offset, pageSize);
 
         return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+    public ResponseEntity<?> getDefaultBooks(int offset, int pageSize, Throwable throwable) {
+        // Define the fallback response
+        String errorMessage = "Books service is temporarily unavailable. Please try again later.";
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(errorMessage);
     }
 
     @GetMapping("/book/{isbn}")
