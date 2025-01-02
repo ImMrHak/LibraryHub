@@ -5,7 +5,6 @@ import com.libraryhub.msborrows.application.mapper.BorrowMapper;
 import com.libraryhub.msborrows.domain.model.Borrow;
 import com.libraryhub.msborrows.domain.service.BorrowDomainService;
 import com.libraryhub.msborrows.infrastructure.FeignClients.microservices.bookOF.books.BooksExternalService;
-import com.libraryhub.msborrows.infrastructure.FeignClients.microservices.bookOF.themes.ThemesExternalService;
 import com.libraryhub.msborrows.infrastructure.FeignClients.microservices.usersOF.users.UsersExternalService;
 import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.request.UpdateBookAvailabilityDTO;
 import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.response.DataBookDTO;
@@ -26,7 +25,6 @@ public class BorrowServiceImpl implements BorrowService {
     private final BorrowDomainService borrowDomainService;
     private final BorrowMapper borrowMapper;
     private final BooksExternalService booksExternalService;
-    private final ThemesExternalService themesExternalService;
     private final UsersExternalService usersExternalService;
 
     @Override

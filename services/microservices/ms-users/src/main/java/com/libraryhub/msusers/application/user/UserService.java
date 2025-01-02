@@ -16,6 +16,6 @@ public interface UserService {
     List<DataUserDTO> getUsers();
     DataUserDTO getUserById(String id);
     List<DataUserDTO> getDeletedUsers();
-    DataUserDTO getDeletedUserById(String id);
-    Object getMyTotalDashboardInformation(String id);
+    DataUserDTO getDeletedUserById(String idUser);
+    Object getMyTotalDashboardInformation(String idUser);
 }

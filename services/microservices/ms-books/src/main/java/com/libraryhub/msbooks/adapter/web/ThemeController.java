@@ -1,9 +1,9 @@
 package com.libraryhub.msbooks.adapter.web;
 
 import com.libraryhub.msbooks.application.theme.ThemeService;
-import com.libraryhub.msbooks.application.theme.record.request.CreateThemeDTO;
-import com.libraryhub.msbooks.application.theme.record.request.DeleteThemeDTO;
-import com.libraryhub.msbooks.application.theme.record.request.UpdateThemeDTO;
+import com.libraryhub.shareddata.sharedRecords.msBooks.theme.record.request.CreateThemeDTO;
+import com.libraryhub.shareddata.sharedRecords.msBooks.theme.record.request.DeleteThemeDTO;
+import com.libraryhub.shareddata.sharedRecords.msBooks.theme.record.request.UpdateThemeDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

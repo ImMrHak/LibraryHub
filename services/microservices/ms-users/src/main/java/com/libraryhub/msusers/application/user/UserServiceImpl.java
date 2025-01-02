@@ -106,29 +106,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public DataUserDTO getDeletedUserById(String id) {
-        User dbUser = userDomainService.findUserById(id);
+    public DataUserDTO getDeletedUserById(String idUser) {
+        User dbUser = userDomainService.findUserById(idUser);
         if(!dbUser.getIsDeleted()) return null;
         return userMapper.userToDataUserDTO(dbUser);
     }
 
     @Override
-    public Object getMyTotalDashboardInformation(String id) {
+    public Object getMyTotalDashboardInformation(String idUser) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         // Convert the response to Integer
         Integer borrowsCount = objectMapper.convertValue(
-                borrowsExternalService.getMyBorrowsCount().getBody(), Integer.class);
+                borrowsExternalService.getMyBorrowsCount(idUser).getBody(), Integer.class);
 
         Integer reservationsCount = objectMapper.convertValue(
-                reservationExternalService.getMyReservationsCount().getBody(), Integer.class);
+                reservationExternalService.getMyReservationsCount(idUser).getBody(), Integer.class);
 
         Integer returnedBorrowsCount = objectMapper.convertValue(
-                borrowsExternalService.getMyReturnedBorrowsCount().getBody(), Integer.class);
+                borrowsExternalService.getMyReturnedBorrowsCount(idUser).getBody(), Integer.class);
 
         // Specify the type for recentReturnedBorrows
-        Object responseRecentBorrows = borrowsExternalService.recentReturnedBorrows().getBody();
+        Object responseRecentBorrows = borrowsExternalService.recentReturnedBorrows(idUser).getBody();
         List<DataBorrowDTO> recentReturnedBorrows = objectMapper.convertValue(
                 responseRecentBorrows, new TypeReference<List<DataBorrowDTO>>() {});
 

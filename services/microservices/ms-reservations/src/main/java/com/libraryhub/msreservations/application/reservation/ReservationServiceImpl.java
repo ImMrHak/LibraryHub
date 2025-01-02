@@ -5,7 +5,6 @@ import com.libraryhub.msreservations.application.reservation.mapper.ReservationM
 import com.libraryhub.msreservations.domain.model.Reservation;
 import com.libraryhub.msreservations.domain.service.ReservationDomainService;
 import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.bookOF.books.BooksExternalService;
-import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.bookOF.themes.ThemesExternalService;
 import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.borrowOF.borrows.BorrowsExternalService;
 import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.usersOF.users.UsersExternalService;
 import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.request.UpdateBookAvailabilityDTO;
@@ -28,7 +27,6 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationDomainService reservationDomainService;
     private final ReservationMapper reservationMapper;
     private final BooksExternalService booksExternalService;
-    private final ThemesExternalService themesExternalService;
     private final UsersExternalService usersExternalService;
     private final BorrowsExternalService borrowsExternalService;
 

@@ -1,15 +1,15 @@
 package com.libraryhub.msbooks.application.book;
 
 import com.libraryhub.msbooks.application.book.mapper.BookMapper;
-import com.libraryhub.msbooks.application.book.record.request.*;
-import com.libraryhub.msbooks.application.book.record.response.DataBookDTO;
 import com.libraryhub.msbooks.application.theme.mapper.ThemeMapper;
-import com.libraryhub.msbooks.application.theme.record.request.CreateThemeDTO;
-import com.libraryhub.msbooks.application.theme.record.request.DeleteThemeDTO;
 import com.libraryhub.msbooks.domain.book.model.Book;
 import com.libraryhub.msbooks.domain.book.service.BookDomainService;
 import com.libraryhub.msbooks.domain.theme.model.Theme;
 import com.libraryhub.msbooks.domain.theme.service.ThemeDomainService;
+import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.request.*;
+import com.libraryhub.shareddata.sharedRecords.msBooks.book.record.response.DataBookDTO;
+import com.libraryhub.shareddata.sharedRecords.msBooks.theme.record.request.CreateThemeDTO;
+import com.libraryhub.shareddata.sharedRecords.msBooks.theme.record.request.DeleteThemeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
