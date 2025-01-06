@@ -13,6 +13,8 @@ import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.response.
 import com.libraryhub.shareddata.sharedRecords.msNotifications.notification.record.request.BorrowCreatedEvent;
 import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.response.DataUserDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.kafka.core.KafkaTemplate;
 
@@ -106,10 +108,12 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public Object deleteBorrow(DeleteBorrowDTO deleteBorrowDTO) {
+    public Object deleteBorrow(Authentication authentication, DeleteBorrowDTO deleteBorrowDTO) {
         if(!borrowDomainService.existsByIdBorrow(deleteBorrowDTO.idBorrow())) return "borrow does not exist";
 
         Borrow dbBorrow = borrowDomainService.findBorrowById(deleteBorrowDTO.idBorrow());
+
+        if(!dbBorrow.getIdUser().equals(((Jwt) authentication.getPrincipal()).getSubject())) return "this is not your borrow";
 
         var response = booksExternalService.updateBookAvailability(new UpdateBookAvailabilityDTO(dbBorrow.getIdBook(), true));
         if (response == null || !(response.getBody() instanceof DataBookDTO updatedBookDTO) || !updatedBookDTO.isAvailable()) {
@@ -172,5 +176,21 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public List<DataBorrowDTO> recentReturnedBorrows(RecentReturnedBooksDTO recentReturnedBooksDTO) {
         return borrowDomainService.findAllByIdUserOrderByActualReturnDateDesc(recentReturnedBooksDTO.idUser()).stream().map(borrowMapper::mapBorrowToDataBorrowDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public Object returnMyBorrowedBookById(Authentication authentication, UpdateMyBorrow updateMyBorrow) {
+        if(!borrowDomainService.existsByIdBorrow(updateMyBorrow.idBorrow())) return "borrow does not exist";
+
+        Borrow dbBorrow = borrowDomainService.findBorrowById(updateMyBorrow.idBorrow());
+
+        if(!dbBorrow.getIdUser().equals(((Jwt) authentication.getPrincipal()).getSubject())) return "this is not your borrow";
+
+        booksExternalService.updateBookAvailability(new UpdateBookAvailabilityDTO(dbBorrow.getIdBook(), true)).getBody();
+
+        dbBorrow.setActualReturnDate(new Date(System.currentTimeMillis()));
+
+        borrowDomainService.saveBorrow(dbBorrow);
+        return "Book returned";
     }
 }

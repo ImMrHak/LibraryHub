@@ -2,12 +2,13 @@ package com.libraryhub.msreservations.application.reservation;
 
 import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.request.*;
 import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.response.DataReservationDTO;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
 public interface ReservationService {
     Object createReservation(CreateReservationDTO createReservationDTO);
-    Object deleteReservation(DeleteReservationDTO deleteReservationDTO);
+    Object deleteReservation(Authentication authentication, DeleteReservationDTO deleteReservationDTO);
     List<DataReservationDTO> getReservations();
     List<DataReservationDTO> getMyReservations(GetMyReservationsDTO getMyReservationsDTO);
     Integer getMyReservationsCount(GetMyReservationsDTO getMyReservationsDTO);

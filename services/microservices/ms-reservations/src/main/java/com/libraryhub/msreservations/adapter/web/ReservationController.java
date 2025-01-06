@@ -90,8 +90,8 @@ public class ReservationController {
     }
 
     @DeleteMapping("/delete") @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<?> deleteBorrow(@Valid @RequestBody DeleteReservationDTO deleteReservationDTO){
-        Object data = reservationService.deleteReservation(deleteReservationDTO);
+    public ResponseEntity<?> deleteBorrow(Authentication authentication, @Valid @RequestBody DeleteReservationDTO deleteReservationDTO){
+        Object data = reservationService.deleteReservation(authentication, deleteReservationDTO);
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
 

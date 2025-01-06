@@ -14,6 +14,8 @@ import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record
 import com.libraryhub.shareddata.sharedRecords.msReservations.reservation.record.response.DataReservationDTO;
 import com.libraryhub.shareddata.sharedRecords.msUsers.user.record.response.DataUserDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -73,10 +75,12 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Object deleteReservation(DeleteReservationDTO deleteReservationDTO) {
+    public Object deleteReservation(Authentication authentication, DeleteReservationDTO deleteReservationDTO) {
         if(!reservationDomainService.existsByIdReservation(deleteReservationDTO.idReservation())) return "the reservation not exist";
 
         Reservation dbReservation = reservationDomainService.findReservationById(deleteReservationDTO.idReservation());
+
+        if(!dbReservation.getIdUser().equals(((Jwt) authentication.getPrincipal()).getSubject())) return "this is not your reservation";
 
         Object responseBorrowBody = borrowsExternalService.getLatestBorrowByIdBook(dbReservation.getIdBook()).getBody();
         DataBorrowDTO dataBorrowDTO = new ObjectMapper().convertValue(responseBorrowBody, DataBorrowDTO.class);
@@ -102,7 +106,17 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<DataReservationDTO> getMyReservations(GetMyReservationsDTO getMyReservationsDTO) {
-        return reservationDomainService.findAllByIdUser(getMyReservationsDTO.idUser()).stream().map(reservationMapper::mapReservationToDataReservationDTO).collect(Collectors.toList());
+        List<Reservation> myReservations = reservationDomainService.findAllByIdUser(getMyReservationsDTO.idUser());
+
+        for(Reservation reservation : myReservations) {
+            if (reservation.getPickUpDate().before(new Date(System.currentTimeMillis()))) {
+                reservation.setIsActive(true);
+
+                reservationDomainService.saveReservation(reservation);
+            }
+        }
+
+        return myReservations.stream().map(reservationMapper::mapReservationToDataReservationDTO).collect(Collectors.toList());
     }
 
     @Override

@@ -80,6 +80,13 @@ public class BorrowController {
         return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
+    @PutMapping("/returnMyBorrowedBook/{idBorrow}")
+    public ResponseEntity<?> returnMyBorrowedBook(Authentication authentication, @PathVariable("idBorrow") Long idBorrow){
+        Object data = borrowService.returnMyBorrowedBookById(authentication, new UpdateMyBorrow(idBorrow));
+
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
 
 
     @PostMapping("/create") @PreAuthorize("hasAnyRole('USER','ADMIN')")
@@ -92,7 +99,7 @@ public class BorrowController {
     }
 
     @PutMapping("/update") @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<?> updateBorrow(Authentication authentication,@Valid @RequestBody UpdateBorrowDTO updateBorrowDTO){
+    public ResponseEntity<?> updateBorrow(Authentication authentication, @Valid @RequestBody UpdateBorrowDTO updateBorrowDTO){
         Object data = borrowService.updateBorrow(updateBorrowDTO.withIdUser(((Jwt) authentication.getPrincipal()).getSubject()));
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
@@ -101,8 +108,8 @@ public class BorrowController {
     }
 
     @DeleteMapping("/delete") @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<?> deleteBorrow(@Valid @RequestBody DeleteBorrowDTO deleteBorrowDTO){
-        Object data = borrowService.deleteBorrow(deleteBorrowDTO);
+    public ResponseEntity<?> deleteBorrow(Authentication authentication, @Valid @RequestBody DeleteBorrowDTO deleteBorrowDTO){
+        Object data = borrowService.deleteBorrow(authentication, deleteBorrowDTO);
 
         if(data instanceof String) return ResponseEntity.status(HttpStatus.OK).body((String) data);
 
