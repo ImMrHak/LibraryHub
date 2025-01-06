@@ -62,7 +62,7 @@ public class BookServiceImpl implements BookService {
         dbBook.setIsbn(updateBookDTO.isbn());
         dbBook.setPublicationYear(updateBookDTO.publicationYear());
 
-        Set<Theme> themes = new HashSet<>();
+        /*Set<Theme> themes = new HashSet<>();
 
         for(CreateThemeDTO themeDTO : updateBookDTO.themes()) {
             if(themeDomainService.existsThemeByName(themeDTO.name())) themes.add(themeDomainService.findByName(themeDTO.name()));
@@ -74,7 +74,7 @@ public class BookServiceImpl implements BookService {
             }
         }
 
-        dbBook.setThemes(themes);
+        dbBook.setThemes(themes);*/
 
         return bookMapper.mapBookToDataBookDTO(bookDomainService.saveBook(dbBook));
     }

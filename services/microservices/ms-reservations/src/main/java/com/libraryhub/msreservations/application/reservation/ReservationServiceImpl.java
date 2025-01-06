@@ -2,8 +2,8 @@ package com.libraryhub.msreservations.application.reservation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.libraryhub.msreservations.application.reservation.mapper.ReservationMapper;
-import com.libraryhub.msreservations.domain.model.Reservation;
-import com.libraryhub.msreservations.domain.service.ReservationDomainService;
+import com.libraryhub.msreservations.domain.reservation.model.Reservation;
+import com.libraryhub.msreservations.domain.reservation.service.ReservationDomainService;
 import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.bookOF.books.BooksExternalService;
 import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.borrowOF.borrows.BorrowsExternalService;
 import com.libraryhub.msreservations.infrastructure.FeignClients.microservices.usersOF.users.UsersExternalService;

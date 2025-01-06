@@ -1,6 +1,6 @@
 package com.libraryhub.msborrows.adapter.feign;
 
-import com.libraryhub.msborrows.application.BorrowService;
+import com.libraryhub.msborrows.application.borrow.BorrowService;
 import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.request.GetLatestBorrowByIdBookDTO;
 import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.request.GetMyBorrowsDTO;
 import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.request.RecentReturnedBooksDTO;

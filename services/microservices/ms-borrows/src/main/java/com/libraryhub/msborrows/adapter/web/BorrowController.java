@@ -1,6 +1,6 @@
 package com.libraryhub.msborrows.adapter.web;
 
-import com.libraryhub.msborrows.application.BorrowService;
+import com.libraryhub.msborrows.application.borrow.BorrowService;
 import com.libraryhub.shareddata.sharedRecords.msBorrows.borrow.record.request.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

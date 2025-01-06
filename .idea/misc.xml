@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -16,6 +17,7 @@
         <option value="$PROJECT_DIR$/services/microservices/LibraryHubShared/pom.xml" />
         <option value="$PROJECT_DIR$/services/microservices/shared/LibraryHubShared/pom.xml" />
         <option value="$PROJECT_DIR$/services/microservices/shared/SharedData/pom.xml" />
+        <option value="$PROJECT_DIR$/services/microservices/ms-notifications/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
